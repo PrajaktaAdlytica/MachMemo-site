@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Downtime reduction visual</title>
+  <desc id="desc">A MachMemo operating impact graphic showing repeated fault workflows reducing unplanned downtime.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" x2="1120" y1="90" y2="1110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c1117"/>
+      <stop offset="0.55" stop-color="#172832"/>
+      <stop offset="1" stop-color="#071014"/>
+    </linearGradient>
+    <linearGradient id="line" x1="220" x2="1000" y1="840" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f6b454"/>
+      <stop offset="0.5" stop-color="#7fd8c7"/>
+      <stop offset="1" stop-color="#90f0d4"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#010608" flood-opacity="0.4"/>
+    </filter>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="5" cy="5" r="1.5" fill="#7fd8c7" opacity="0.24"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1200" rx="64" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#dots)"/>
+  <g filter="url(#soft)">
+    <rect x="158" y="155" width="884" height="215" rx="36" fill="#121e25" stroke="#314b54" stroke-width="3"/>
+    <text x="214" y="244" fill="#effff9" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="850">-27%</text>
+    <text x="405" y="235" fill="#effff9" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800">unplanned downtime</text>
+    <text x="405" y="292" fill="#a7b9ba" font-family="Inter, Arial, sans-serif" font-size="30">in repeated fault workflows</text>
+  </g>
+  <g opacity="0.28">
+    <path d="M178 820h844M178 692h844M178 564h844M178 436h844" stroke="#b7d8d1" stroke-width="2"/>
+    <path d="M250 410v470M430 410v470M610 410v470M790 410v470M970 410v470" stroke="#b7d8d1" stroke-width="2"/>
+  </g>
+  <path d="M220 790c110 2 126-180 230-148 96 29 86 170 182 151 106-21 124-270 222-248 62 14 86 82 126 63" fill="none" stroke="#516875" stroke-width="12" stroke-linecap="round" opacity="0.55"/>
+  <path d="M220 815c118-20 138-84 230-102 115-23 130 20 224-46 98-68 112-154 224-185 44-12 68-7 82-3" fill="none" stroke="url(#line)" stroke-width="13" stroke-linecap="round"/>
+  <g filter="url(#soft)">
+    <rect x="205" y="884" width="790" height="128" rx="30" fill="#f7fbf8" stroke="#bed6cf" stroke-width="3"/>
+    <text x="254" y="945" fill="#14252a" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800">Fault pattern reused</text>
+    <text x="254" y="988" fill="#5d7377" font-family="Inter, Arial, sans-serif" font-size="24">repeat issue detected before it becomes another stoppage</text>
+    <rect x="770" y="920" width="170" height="54" rx="27" fill="#dff5ec"/>
+    <text x="805" y="956" fill="#147664" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">ACTIONED</text>
+  </g>
+</svg>

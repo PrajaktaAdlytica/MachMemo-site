@@ -1005,6 +1005,13 @@ function IntegrationsSection() {
 }
 
 function StatsSection() {
+  const impactVisuals = [
+    "/impact-source-backed.svg",
+    "/impact-downtime.svg",
+    "/impact-throughput.svg",
+    "/impact-signals.svg",
+  ];
+
   return (
     <section className="section-pad stats-section">
       <div className="stats-copy reveal">
@@ -1028,11 +1035,16 @@ function StatsSection() {
           </article>
         ))}
       </div>
-      <div className="spotlight-video reveal">
-        <video autoPlay muted loop playsInline>
-          <source src="/machmemo-spotlight.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <figure className="impact-visual reveal" aria-label="Operating impact motion graphic">
+        {impactVisuals.map((src, index) => (
+          <span
+            aria-hidden="true"
+            className={`impact-frame impact-frame-${index}`}
+            key={src}
+            style={{ backgroundImage: `url(${src})` }}
+          />
+        ))}
+      </figure>
     </section>
   );
 }

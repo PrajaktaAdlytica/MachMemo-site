@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Source-backed answers visual</title>
+  <desc id="desc">A MachMemo operating impact graphic showing verified answers with cited documents and maintenance evidence.</desc>
+  <defs>
+    <linearGradient id="bg" x1="120" x2="1080" y1="80" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b1418"/>
+      <stop offset="0.56" stop-color="#102b32"/>
+      <stop offset="1" stop-color="#071014"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="220" x2="980" y1="180" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b5f1df"/>
+      <stop offset="1" stop-color="#26a88c"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="32" stdDeviation="32" flood-color="#010608" flood-opacity="0.38"/>
+    </filter>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.6" fill="#7fd8c7" opacity="0.28"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1200" rx="64" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#dots)" opacity="0.9"/>
+  <circle cx="600" cy="610" r="350" fill="#7fd8c7" opacity="0.08"/>
+  <circle cx="600" cy="610" r="230" fill="none" stroke="#7fd8c7" stroke-width="2" opacity="0.22"/>
+  <g filter="url(#soft)">
+    <rect x="180" y="170" width="840" height="220" rx="34" fill="#13262c" stroke="#31545c" stroke-width="3"/>
+    <text x="230" y="250" fill="#effff9" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">98% source-backed</text>
+    <text x="230" y="312" fill="#a8bbb9" font-family="Inter, Arial, sans-serif" font-size="34">answers in scoped pilot data</text>
+    <rect x="740" y="232" width="210" height="62" rx="31" fill="#143f3a" stroke="#7fd8c7" stroke-width="2"/>
+    <text x="782" y="274" fill="#95f2dc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">VERIFIED</text>
+  </g>
+  <g filter="url(#soft)">
+    <rect x="258" y="495" width="310" height="250" rx="30" fill="#f7fbf8" stroke="#c5d8d1" stroke-width="3"/>
+    <path d="M326 558h94l42 42v92H326z" fill="none" stroke="#147664" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M420 558v43h43" fill="none" stroke="#147664" stroke-width="12" stroke-linejoin="round"/>
+    <text x="326" y="804" fill="#14252a" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800">WO-2024-0312</text>
+    <text x="326" y="850" fill="#5d7377" font-family="Inter, Arial, sans-serif" font-size="25">repair event</text>
+  </g>
+  <g filter="url(#soft)">
+    <rect x="626" y="495" width="310" height="250" rx="30" fill="#f7fbf8" stroke="#c5d8d1" stroke-width="3"/>
+    <path d="M704 565h154M704 625h154M704 685h104" stroke="#147664" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="674" cy="565" r="12" fill="#147664"/>
+    <circle cx="674" cy="625" r="12" fill="#147664"/>
+    <circle cx="674" cy="685" r="12" fill="#147664"/>
+    <text x="680" y="804" fill="#14252a" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800">SOP-PMP-07</text>
+    <text x="680" y="850" fill="#5d7377" font-family="Inter, Arial, sans-serif" font-size="25">source document</text>
+  </g>
+  <path d="M568 620c62 14 84 14 118 0" fill="none" stroke="url(#mint)" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+  <path d="M600 885l-70-70 36-36 34 34 95-118 40 32z" fill="url(#mint)" opacity="0.95"/>
+  <text x="600" y="1020" text-anchor="middle" fill="#eefdf8" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800">Every answer carries its evidence.</text>
+</svg>
