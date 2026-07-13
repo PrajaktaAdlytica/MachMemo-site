@@ -491,14 +491,18 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 3;
-  max-width: 610px;
-  margin: -18px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 640px;
+  margin: 0;
   text-align: left;
 }
 
 .hero-copy h1 {
-  max-width: 680px;
-  margin-bottom: 28px;
+  max-width: 640px;
+  margin-bottom: 30px;
   margin-right: 0;
   margin-left: 0;
   color: #f7fffc;
@@ -508,14 +512,18 @@ h3 {
 }
 
 .hero .badge-line {
-  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
   border-color: rgba(143, 216, 199, 0.12);
   background: rgba(143, 216, 199, 0.06);
   color: var(--color-mint);
 }
 
 .hero-subcopy {
-  max-width: 640px;
+  max-width: 610px;
+  margin-bottom: 0;
   margin-right: 0;
   margin-left: 0;
   color: rgba(236, 246, 242, 0.68);
@@ -1922,6 +1930,41 @@ h3 {
     margin-left: 0;
   }
 
+  .hero {
+    align-items: start;
+    gap: 42px;
+    padding: 158px 56px 84px;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+  }
+
+  .hero .badge-line {
+    margin-bottom: 32px;
+  }
+
+  .hero-copy h1 {
+    max-width: 720px;
+    margin-bottom: 34px;
+    font-size: clamp(3.45rem, 7vw, 4.75rem);
+    line-height: 1.03;
+  }
+
+  .hero-subcopy {
+    max-width: 680px;
+    font-size: 1.08rem;
+    line-height: 1.62;
+  }
+
+  .hero-actions {
+    margin-top: 38px;
+  }
+
+  .hero-proof {
+    margin-top: 32px;
+  }
+
   .robotic-hero-image {
     inset: -40px -220px -70px -90px;
     opacity: 0.54;
@@ -1974,12 +2017,45 @@ h3 {
   .contact-section,
   .demo-section,
   .roi-section {
-    padding: 126px 20px 62px;
+    padding: 126px 24px 62px;
   }
 
   .hero {
     min-height: auto;
-    gap: 28px;
+    gap: 30px;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero .badge-line {
+    max-width: 100%;
+    margin-bottom: 24px;
+    white-space: normal;
+  }
+
+  .hero-copy h1 {
+    max-width: 100%;
+    margin-bottom: 24px;
+    font-size: clamp(3rem, 12vw, 4rem);
+    line-height: 1.02;
+  }
+
+  .hero-subcopy {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .hero-proof {
+    width: 100%;
+    margin-top: 24px;
   }
 
   .hero-actions,
