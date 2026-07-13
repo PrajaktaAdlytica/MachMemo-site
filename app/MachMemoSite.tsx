@@ -188,13 +188,6 @@ const companyLinks: MenuItem[] = [
   },
 ];
 
-const proofBadges = [
-  "GDPR-ready",
-  "EU hosting option",
-  "Source-backed answers",
-  "3-6 week pilot",
-];
-
 const industryTags = [
   "CNC machining",
   "Packaging",
@@ -207,17 +200,17 @@ const industryTags = [
 const workflowSteps = [
   {
     title: "Capture",
-    copy: "Collect documents, work-order history, signals, photos, and senior technician notes.",
+    copy: "Zbieramy wszystko, co ważne: dokumenty, zgłoszenia, sygnały, notatki i rozmowy.",
     icon: Database,
   },
   {
     title: "Verify",
-    copy: "Cross-check answers against plant sources, confidence signals, and asset context.",
+    copy: "Weryfikujemy i łączymy w grafie. Każda odpowiedź ma źródła i poziom pewności.",
     icon: ShieldCheck,
   },
   {
     title: "Apply",
-    copy: "Deliver the right fix, document, or health action in the flow of maintenance work.",
+    copy: "Dostarczamy właściwe rozwiązania we właściwym momencie. Mniej przestojów.",
     icon: ClipboardCheck,
   },
 ];
@@ -615,7 +608,12 @@ function Header({
         aria-label="Main navigation"
         onMouseLeave={() => setActiveMenu(null)}
       >
-        {["Products", "Solutions", "Resources", "Company"].map((item) => (
+        {[
+          ["Products", "Produkty"],
+          ["Solutions", "Rozwiązania"],
+          ["Resources", "Zasoby"],
+          ["Company", "Firma"],
+        ].map(([item, label]) => (
           <button
             className={`nav-link ${activeMenu === item ? "active" : ""}`}
             key={item}
@@ -623,12 +621,12 @@ function Header({
             onFocus={() => setActiveMenu(item)}
             type="button"
           >
-            {item}
+            {label}
             <ChevronDown size={15} />
           </button>
         ))}
         <Link className="nav-link direct" href="/pricing">
-          Pricing
+          Cennik
         </Link>
         {activeMenu && <MegaMenu activeMenu={activeMenu} />}
       </nav>
@@ -638,10 +636,10 @@ function Header({
           <Globe2 size={15} /> PL / EN
         </span>
         <Link href="/signin" className="signin">
-          Sign In
+          Zaloguj się
         </Link>
         <Link href="/request-demo" className="btn btn-primary header-demo">
-          Book demo <ArrowRight size={16} />
+          Umów demo <ArrowRight size={16} />
         </Link>
       </div>
 
@@ -656,14 +654,14 @@ function Header({
 
       {mobileOpen && (
         <div className="mobile-menu">
-          <MobileGroup title="Products" items={products} />
-          <MobileGroup title="Solutions" items={solutions} />
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/about">About</Link>
+          <MobileGroup title="Produkty" items={products} />
+          <MobileGroup title="Rozwiązania" items={solutions} />
+          <Link href="/pricing">Cennik</Link>
+          <Link href="/about">Firma</Link>
           <Link href="/security">AI & Data</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact">Kontakt</Link>
           <Link href="/request-demo" className="btn btn-primary">
-            Request Demo
+            Umów demo
           </Link>
         </div>
       )}
@@ -761,27 +759,27 @@ function Hero() {
       <div className="hero-copy reveal">
         <div className="eyebrow badge-line">
           <Sparkles size={15} />
-          Verified AI for maintenance and reliability teams
+          Zweryfikowana AI dla utrzymania ruchu
         </div>
         <h1>
-          Turn machine issues into <span>memory that works.</span>
+          Zamień awarie maszyn w <span>pamięć, która działa.</span>
         </h1>
         <p className="hero-subcopy">
-          Turn machine issues into maintenance intelligence. MachMemo connects
-          documents, repairs, signals, and expert know-how into one verified
-          machine memory layer, so teams solve faster and keep learning.
+          MachMemo łączy dokumenty, naprawy, sygnały i wiedzę ekspertów
+          w jedną zweryfikowaną warstwę pamięci maszyn. Odpowiada z
+          kontekstem. Działa w Twojej rzeczywistości.
         </p>
         <div className="hero-actions">
           <Link className="btn btn-primary" href="/request-demo">
-            Book a demo <ArrowRight size={18} />
+            Umów demo <ArrowRight size={18} />
           </Link>
           <Link className="btn btn-secondary" href="/products/fix">
             <Play size={16} />
-            See how it works
+            Zobacz jak to działa
           </Link>
         </div>
         <div className="hero-proof">
-          {proofBadges.map((item) => (
+          {["AI Act Ready", "Dane zostają w Twojej organizacji", "Hosting w UE"].map((item) => (
             <span key={item}>
               <Check size={14} />
               {item}
@@ -817,55 +815,59 @@ function MemoryGraphHero() {
       <GraphNode
         className="node-docs"
         icon={FileText}
-        title="Documents"
-        value="1,248 files"
-        detail="SOP, manuals, drawings"
+        title="Dokumenty"
+        value="1,248 plików"
+        detail="SOP, instrukcje, rysunki"
       />
       <GraphNode
         className="node-faults"
         icon={AlertTriangle}
-        title="Failures"
-        value="842 cases"
-        detail="Alarm and event history"
+        title="Awarie"
+        value="842 przypadki"
+        detail="Historia zdarzeń"
       />
       <GraphNode
         className="node-signals"
         icon={Radio}
-        title="Signals"
-        value="2.4M / day"
-        detail="SCADA, IoT, trends"
+        title="Sygnały"
+        value="2.4M punktów/dzień"
+        detail="SCADA, IoT, trendy"
       />
       <GraphNode
         className="node-fixes"
         icon={Wrench}
-        title="Fixes"
-        value="1,103 answers"
-        detail="Parts, steps, times"
+        title="Naprawy"
+        value="1,103 rozwiązania"
+        detail="Kroki, części, czasy"
       />
       <GraphNode
         className="node-machines"
         icon={Factory}
-        title="Machines"
-        value="156 active"
-        detail="Lines and components"
+        title="Maszyny"
+        value="156 aktywne"
+        detail="Linie, urządzenia, komponenty"
       />
       <GraphNode
         className="node-experts"
         icon={UserRound}
-        title="Experts"
-        value="28 specialists"
-        detail="Captured know-how"
+        title="Eksperci"
+        value="28 specjalistów"
+        detail="Wiedza ekspercka"
       />
 
       <article className="verified-answer">
         <div className="answer-top">
-          <span>Active: Pompa P-101</span>
-          <strong>Moderate</strong>
+          <span>Aktywne: Pompa P-101</span>
+          <strong>Umiarkowane</strong>
         </div>
-        <h3>Unusual vibration detected</h3>
+        <div className="verified-line">
+          <Check size={14} />
+          Zweryfikowana odpowiedź
+        </div>
+        <h3>Wykryto nietypowe wibracje</h3>
         <p>
-          Most likely cause: loose mounting bolts or bearing play after the
-          last service window.
+          Najbardziej prawdopodobna przyczyna: luźne mocowanie stopy pompy
+          lub luz łożyska po ostatnim oknie serwisowym.
         </p>
         <div className="confidence-track">
           <span />
@@ -880,10 +882,10 @@ function MemoryGraphHero() {
             <BookOpen size={14} /> SOP-PMP-07 <strong>96%</strong>
           </li>
           <li>
-            <Activity size={14} /> SCADA trend <strong>94%</strong>
+            <Activity size={14} /> SCADA Trend <strong>94%</strong>
           </li>
           <li>
-            <UserRound size={14} /> Jan Kowalski note <strong>93%</strong>
+            <UserRound size={14} /> Ekspert: Jan Kowalski <strong>93%</strong>
           </li>
         </ul>
       </article>
