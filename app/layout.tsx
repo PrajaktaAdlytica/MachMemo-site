@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description:
     "MachMemo turns machine docs, faults, technician know-how, and health signals into reusable maintenance intelligence for European manufacturing teams.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/favicon-machmemo.svg",
+    shortcut: "/favicon-machmemo.svg",
   },
   openGraph: {
     title: "MachMemo - Machine memory for maintenance intelligence",
