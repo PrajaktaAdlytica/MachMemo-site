@@ -502,9 +502,7 @@ function Header({
   return (
     <header className="site-header">
       <Link className="brand" href="/" aria-label="MachMemo home">
-        <span className="brand-mark">
-          <span />
-        </span>
+        <span className="brand-mark" />
         <span className="brand-word">MachMemo</span>
       </Link>
 
@@ -1440,9 +1438,7 @@ function SignInPage() {
     <section className="signin-page">
       <div className="signin-panel reveal">
         <Link className="brand" href="/" aria-label="MachMemo home">
-          <span className="brand-mark">
-            <span />
-          </span>
+          <span className="brand-mark" />
           <span className="brand-word">MachMemo</span>
         </Link>
         <h1>Sign in to your machine memory.</h1>
@@ -1593,9 +1589,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-brand">
         <Link className="brand" href="/">
-          <span className="brand-mark">
-            <span />
-          </span>
+          <span className="brand-mark" />
           <span className="brand-word">MachMemo</span>
         </Link>
         <p>Machine memory for maintenance intelligence.</p>
