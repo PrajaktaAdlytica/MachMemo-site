@@ -151,6 +151,10 @@ h3 {
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
+  border: 1px solid rgba(31, 138, 112, 0.18);
+  border-radius: var(--radius-pill);
+  padding: 7px 11px;
+  background: var(--color-mint-soft);
   color: var(--color-circuit-dark);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -728,9 +732,11 @@ h3 {
 }
 
 .product-card {
+  position: relative;
   display: flex;
   min-height: 492px;
   flex-direction: column;
+  overflow: hidden;
   padding: 24px;
   transition:
     transform 220ms ease,
@@ -738,10 +744,58 @@ h3 {
     box-shadow 220ms ease;
 }
 
+.product-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle, rgba(143, 216, 199, 0.2) 1px, transparent 1.6px),
+    radial-gradient(circle at 18% 10%, rgba(143, 216, 199, 0.2), transparent 26%),
+    linear-gradient(145deg, #111b20, #0b1216 72%);
+  background-size: 18px 18px, auto, auto;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
 .product-card:hover {
-  border-color: rgba(31, 138, 112, 0.5);
-  box-shadow: var(--shadow-card);
+  border-color: rgba(143, 216, 199, 0.38);
+  color: #f4fffb;
+  box-shadow: 0 24px 70px rgba(16, 22, 25, 0.2);
   transform: translateY(-5px);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card:hover p,
+.product-card:hover .product-card-head > span:last-child,
+.product-card:hover .mini-product-panel span,
+.product-card:hover .product-footer span {
+  color: rgba(236, 246, 242, 0.68);
+}
+
+.product-card:hover .icon-badge,
+.product-card:hover .mini-product-panel {
+  border-color: rgba(143, 216, 199, 0.2);
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.product-card:hover .mini-product-panel span,
+.product-card:hover .product-footer {
+  border-color: rgba(143, 216, 199, 0.14);
+}
+
+.product-card:hover .mini-product-panel strong,
+.product-card:hover .product-footer strong,
+.product-card:hover .product-card-link {
+  color: var(--color-mint);
 }
 
 .product-card-head {
@@ -1652,11 +1706,20 @@ h3 {
   margin-top: 28px;
 }
 
-.contact-list span {
+.contact-list span,
+.contact-list a {
   display: flex;
   gap: 10px;
   align-items: center;
   color: var(--color-graphite);
+}
+
+.contact-list a {
+  transition: color 160ms ease;
+}
+
+.contact-list a:hover {
+  color: var(--color-circuit-dark);
 }
 
 .contact-list svg {
@@ -1821,7 +1884,7 @@ h3 {
 
 .site-footer {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(150px, 0.55fr));
+  grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(138px, 0.55fr));
   gap: 40px;
   padding: 58px 48px;
   border-top: 1px solid var(--color-line);
@@ -1832,6 +1895,45 @@ h3 {
   max-width: 460px;
   margin: 18px 0 0;
   color: var(--color-steel);
+}
+
+.footer-brand .contact-list {
+  margin-top: 22px;
+}
+
+.footer-brand .contact-list a,
+.footer-brand .contact-list span {
+  font-size: 0.92rem;
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  padding: 8px 11px;
+  background: var(--color-paper);
+  color: var(--color-graphite);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.footer-social a:hover {
+  border-color: rgba(31, 138, 112, 0.45);
+  color: var(--color-circuit-dark);
+  transform: translateY(-2px);
 }
 
 .footer-column {

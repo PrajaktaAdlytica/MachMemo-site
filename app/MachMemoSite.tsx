@@ -16,6 +16,7 @@ import {
   ChevronDown,
   ClipboardCheck,
   Cpu,
+  ExternalLink,
   Factory,
   FileText,
   Gauge,
@@ -1370,12 +1371,12 @@ function ContactDetails() {
       <span>
         <MapPin size={18} /> ul. Prosta 20, 00-850 Warszawa, Polska
       </span>
-      <span>
+      <a href="mailto:kontakt@machmemo.com">
         <Mail size={18} /> kontakt@machmemo.com
-      </span>
-      <span>
+      </a>
+      <a href="tel:+48221048317">
         <Phone size={18} /> +48 22 104 83 17
-      </span>
+      </a>
     </div>
   );
 }
@@ -1553,6 +1554,20 @@ function ROICalculatorPage() {
 }
 
 function Footer() {
+  const socialLinks = [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/machmemo",
+      mark: "in",
+    },
+    { label: "X", href: "https://x.com/machmemo", mark: "x" },
+    {
+      label: "YouTube",
+      href: "https://www.youtube.com/@machmemo",
+      mark: "yt",
+    },
+  ];
+
   return (
     <footer className="site-footer">
       <div className="footer-brand">
@@ -1566,9 +1581,24 @@ function Footer() {
           suppliers across Europe.
         </p>
         <ContactDetails />
+        <div className="footer-social" aria-label="MachMemo social links">
+          {socialLinks.map((item) => (
+            <a
+              href={item.href}
+              key={item.label}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={item.label}
+            >
+              <span>{item.mark}</span>
+              <ExternalLink size={14} />
+            </a>
+          ))}
+        </div>
       </div>
       <FooterColumn title="Products" items={products} />
       <FooterColumn title="Solutions" items={solutions} />
+      <FooterColumn title="Resources" items={resources} />
       <FooterColumn
         title="Company"
         items={[
@@ -1579,6 +1609,12 @@ function Footer() {
             href: "/request-demo",
             description: "",
             icon: Mail,
+          },
+          {
+            title: "Sign In",
+            href: "/signin",
+            description: "",
+            icon: LockKeyhole,
           },
         ]}
       />
