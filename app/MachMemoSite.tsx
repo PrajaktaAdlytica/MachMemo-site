@@ -495,6 +495,33 @@ export default function MachMemoSite({ page = "home" }: { page?: PageKey }) {
         );
       });
 
+      const storyCards = gsap.utils.toArray<HTMLElement>(".story-card-motion");
+      if (storyCards.length) {
+        gsap.set(storyCards, {
+          autoAlpha: 0,
+          y: 64,
+          scale: 0.96,
+        });
+
+        const storyTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".story-section",
+            start: "top 68%",
+            end: "bottom 38%",
+            scrub: 0.85,
+          },
+        });
+
+        storyTimeline.to(storyCards, {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.85,
+          ease: "power3.out",
+          stagger: 0.42,
+        });
+      }
+
       gsap.fromTo(
         ".memory-link",
         { scaleX: 0, autoAlpha: 0, transformOrigin: "left center" },
@@ -841,7 +868,7 @@ function ScrollStory() {
         {steps.map((step, index) => {
           const Icon = step.icon;
           return (
-            <article className="story-card reveal" key={step.title}>
+            <article className={`story-card story-card-motion story-card-${index}`} key={step.title}>
               <span className="step-index">{index + 1}</span>
               <Icon size={25} />
               <h3>{step.title}</h3>

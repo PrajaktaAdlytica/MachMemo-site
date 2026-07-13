@@ -1123,7 +1123,7 @@ h3 {
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: 60px;
   align-items: start;
-  background: #fff;
+  background: #f3f7f1;
 }
 
 .story-copy {
@@ -1141,7 +1141,7 @@ h3 {
 .story-rail {
   display: grid;
   width: min(100%, 680px);
-  gap: 14px;
+  gap: 18px;
 }
 
 .story-card {
@@ -1149,13 +1149,35 @@ h3 {
   grid-template-columns: 38px 30px minmax(0, 1fr);
   gap: 14px;
   align-items: start;
-  padding: 22px;
-  transition: transform 180ms ease, border-color 180ms ease;
+  min-height: 176px;
+  border: 0;
+  padding: 26px;
+  box-shadow: 0 18px 44px rgba(16, 22, 25, 0.1);
+  transform-origin: center left;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .story-card:hover {
-  border-color: rgba(31, 138, 112, 0.42);
-  transform: translateX(4px);
+  box-shadow: 0 24px 54px rgba(16, 22, 25, 0.14);
+  transform: translateX(5px);
+}
+
+.story-card-0 {
+  background: #dff1ea;
+}
+
+.story-card-1 {
+  background: #ddebf9;
+}
+
+.story-card-2 {
+  background: #f4e7cc;
+}
+
+.story-card-3 {
+  background: #e8e4f3;
 }
 
 .story-card svg {
@@ -1170,6 +1192,9 @@ h3 {
 .story-card p {
   grid-column: 3;
   margin-bottom: 0;
+  color: #42565f;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .memory-layer {
