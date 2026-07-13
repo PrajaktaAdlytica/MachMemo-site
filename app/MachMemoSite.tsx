@@ -15,7 +15,6 @@ import {
   Building2,
   Check,
   ChevronDown,
-  CircleDot,
   ClipboardCheck,
   Cpu,
   Database,
@@ -31,6 +30,7 @@ import {
   MessageSquareQuote,
   Phone,
   PlugZap,
+  Play,
   Radio,
   Search,
   ShieldCheck,
@@ -59,50 +59,63 @@ export type PageKey =
   | "faq"
   | "roi-calculator";
 
+type IconType = React.ElementType;
+
 type Product = {
   title: string;
   href: string;
   label: string;
   description: string;
-  icon: React.ElementType;
+  icon: IconType;
   metric: string;
+  signal: string;
 };
 
 type Solution = {
   title: string;
   href: string;
   description: string;
-  icon: React.ElementType;
+  icon: IconType;
   proof: string;
+};
+
+type MenuItem = {
+  title: string;
+  href: string;
+  description: string;
+  icon: IconType;
 };
 
 const products: Product[] = [
   {
     title: "MachMemo Docs",
     href: "/products/docs",
-    label: "Knowledge capture",
+    label: "Documents",
     description:
-      "Convert manuals, SOPs, service notes, and expert walkthroughs into searchable machine knowledge.",
+      "Controlled machine documents, SOPs, OEM manuals, service notes, photos, and expert walkthroughs mapped to every asset.",
     icon: FileText,
-    metric: "18 hrs/month reclaimed",
+    metric: "18h",
+    signal: "less document hunting each month",
   },
   {
     title: "MachMemo Fix",
     href: "/products/fix",
-    label: "Verified troubleshooting",
+    label: "Verified fixes",
     description:
-      "Guide technicians from alarm to fix path with source-backed steps, parts, safety notes, and prior repairs.",
+      "AI-guided troubleshooting that cites prior repairs, safety notes, parts context, and the sources behind every answer.",
     icon: Wrench,
-    metric: "42% faster recovery",
+    metric: "42%",
+    signal: "faster repeat fault recovery",
   },
   {
     title: "MachMemo Health",
     href: "/products/health",
-    label: "Machine risk intelligence",
+    label: "Asset health",
     description:
-      "Track asset health, recurring faults, warning patterns, and preventive recommendations without a large IT project.",
+      "A practical risk layer for recurring faults, sensor trends, inspection history, and maintenance actions across key machines.",
     icon: Activity,
-    metric: "31% fewer repeat alarms",
+    metric: "31%",
+    signal: "fewer recurring alarms",
   },
 ];
 
@@ -111,108 +124,188 @@ const solutions: Solution[] = [
     title: "Machine Shops",
     href: "/solutions/machine-shops",
     description:
-      "Keep spindle time high by preserving setup fixes, machine quirks, offsets, alarms, and recurring CNC fault patterns.",
+      "Preserve CNC alarms, setup quirks, spindle issues, coolant checks, and proven fixes for every critical machine.",
     icon: Factory,
-    proof: "Reduce repeat troubleshooting on critical CNC assets.",
+    proof: "Built for spindle time, repeat faults, and faster shift handover.",
   },
   {
     title: "Maintenance Teams",
     href: "/solutions/maintenance-teams",
     description:
-      "Give every shift the same verified maintenance memory, from senior technician notes to work-order history.",
+      "Give every shift the same verified memory from manuals, work orders, technician notes, and machine history.",
     icon: Users,
-    proof: "Improve MTTR, handover quality, and first-time fix rate.",
+    proof: "Built around MTTR, first-time fix rate, and knowledge reuse.",
   },
   {
     title: "Industrial Suppliers",
     href: "/solutions/industrial-suppliers",
     description:
-      "Turn field service knowledge, installed-base history, and customer issues into a reusable support layer.",
+      "Turn installed-base service history, field notes, and customer issues into a reusable support intelligence layer.",
     icon: BriefcaseBusiness,
-    proof: "Scale expertise across customer sites and service teams.",
+    proof: "Built for service scale, support quality, and product feedback.",
   },
 ];
 
-const faqItems = [
+const resources: MenuItem[] = [
   {
-    q: "Is MachMemo a CMMS replacement?",
-    a: "MachMemo can work beside your CMMS, spreadsheets, shared drives, and maintenance logs. The first job is to turn machine knowledge and recurring fixes into reusable intelligence. Teams can later connect work orders, alerts, and asset data where it makes sense.",
+    title: "Case Studies",
+    href: "/resources/case-studies",
+    description: "Maintenance scenarios, pilot outcomes, and field-style proof.",
+    icon: BarChart3,
   },
   {
-    q: "Do we need sensors to start?",
-    a: "No. Docs and Fix can start from manuals, SOPs, photos, work-order history, and technician notes. Health becomes richer when PLC, sensor, or CMMS data is connected, but the first pilot does not require a new hardware project.",
+    title: "FAQ",
+    href: "/resources/faq",
+    description: "Practical answers about AI, data, onboarding, and pricing.",
+    icon: MessageSquareQuote,
   },
   {
-    q: "How does MachMemo avoid unreliable AI answers?",
-    a: "MachMemo is designed around source-backed answers. Fix paths show the documents, prior repairs, technician notes, and machine context used to create the answer. If there is not enough context, the product should surface what is missing instead of pretending.",
+    title: "ROI Calculator",
+    href: "/resources/roi-calculator",
+    description: "Estimate downtime waste, repeat-fault cost, and saved hours.",
+    icon: Gauge,
+  },
+];
+
+const companyLinks: MenuItem[] = [
+  {
+    title: "About",
+    href: "/about",
+    description: "A Polish product company building machine memory for EU plants.",
+    icon: Building2,
   },
   {
-    q: "Can technicians use it on the shop floor?",
-    a: "Yes. The interface is built around quick search, mobile-friendly fix cards, short checklists, source snippets, and feedback after the job. The goal is less typing, less document hunting, and a cleaner record for the next shift.",
+    title: "AI & Data",
+    href: "/security",
+    description: "Source-backed answers, EU hosting posture, audit trail, and roles.",
+    icon: ShieldCheck,
   },
   {
-    q: "Is MachMemo suitable for EU manufacturing SMEs?",
-    a: "That is the core audience. The site, product story, onboarding model, and trust language are built for Polish and European SMEs that need practical AI without enterprise implementation overhead.",
+    title: "Contact",
+    href: "/contact",
+    description: "Warsaw office, demo requests, partnerships, and support.",
+    icon: Mail,
+  },
+];
+
+const proofBadges = [
+  "GDPR-ready",
+  "EU hosting option",
+  "Source-backed answers",
+  "3-6 week pilot",
+];
+
+const industryTags = [
+  "CNC machining",
+  "Packaging",
+  "Automotive suppliers",
+  "Food production",
+  "Industrial service",
+  "Metal fabrication",
+];
+
+const workflowSteps = [
+  {
+    title: "Capture",
+    copy: "Collect documents, work-order history, signals, photos, and senior technician notes.",
+    icon: Database,
   },
   {
-    q: "How long does implementation take?",
-    a: "A focused pilot can start in three to six weeks. The first phase usually covers top assets, high-value documents, known recurring faults, and the people who hold the most critical tacit knowledge.",
+    title: "Verify",
+    copy: "Cross-check answers against plant sources, confidence signals, and asset context.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Apply",
+    copy: "Deliver the right fix, document, or health action in the flow of maintenance work.",
+    icon: ClipboardCheck,
+  },
+];
+
+const caseStudies = [
+  {
+    label: "Legnica machine shop",
+    industry: "CNC machining",
+    metric: "57%",
+    title: "faster repeat alarm resolution",
+    detail:
+      "Spindle vibration checks, bearing preload notes, coolant residue patterns, and supplier instructions became a reusable fix path.",
+    tone: "mint",
+  },
+  {
+    label: "Wroclaw packaging line",
+    industry: "Packaging",
+    metric: "-320h",
+    title: "downtime risk avoided yearly",
+    detail:
+      "Shift notes, fault codes, and maintenance history were unified into a verified memory for recurring conveyor stops.",
+    tone: "amber",
+  },
+  {
+    label: "Katowice service team",
+    industry: "Industrial supplier",
+    metric: "92%",
+    title: "answers with cited sources",
+    detail:
+      "Field service records and manuals became a support layer for faster customer troubleshooting and better product feedback.",
+    tone: "burgundy",
+  },
+  {
+    label: "Poznan plastics site",
+    industry: "Manufacturing SME",
+    metric: "24/7",
+    title: "machine memory access",
+    detail:
+      "Maintenance teams stopped depending on one expert by capturing procedures, machine quirks, and prior fixes.",
+    tone: "steel",
   },
 ];
 
 const testimonials = [
   {
     quote:
-      "MachMemo gave our junior technicians the same fix path our senior engineer used from memory.",
+      "MachMemo gave newer technicians a source-backed path instead of a folder hunt and three phone calls.",
     role: "Maintenance Manager",
-    company: "EU packaging manufacturer",
+    company: "Packaging manufacturer, Lower Silesia",
   },
   {
     quote:
-      "We stopped solving the same CNC fault from scratch every month. The fix became part of the machine record.",
+      "The value was the memory. Once a machine issue was solved, it became easier for the whole team to solve again.",
     role: "Owner",
-    company: "Precision machine shop",
+    company: "Precision machine shop, Wielkopolska",
   },
   {
     quote:
-      "The value was not just AI search. It was turning service history into something our whole team could reuse.",
+      "We needed practical AI that respected our documentation and our technicians. That is the part MachMemo got right.",
     role: "Service Lead",
-    company: "Industrial supplier",
+    company: "Industrial supplier, Mazovia",
   },
 ];
 
-const caseStudies = [
+const faqItems = [
   {
-    metric: "42%",
-    title: "faster fault recovery",
-    tag: "CNC machine shop",
-    detail:
-      "Recurring spindle vibration faults were converted into verified fix cards with parts, checks, and source notes.",
-    tone: "green",
+    q: "Is MachMemo a CMMS replacement?",
+    a: "No. MachMemo is a maintenance intelligence layer that can sit beside a CMMS, spreadsheets, shared drives, and work-order exports. It is focused on machine memory, verified fixes, and reusable know-how.",
   },
   {
-    metric: "31%",
-    title: "fewer repeat alarms",
-    tag: "Packaging line",
-    detail:
-      "Shift teams stopped re-diagnosing the same line stoppages by reusing issue history and technician feedback.",
-    tone: "amber",
+    q: "Do we need sensors to start?",
+    a: "No. Teams can start with documents, SOPs, photos, fault history, and expert interviews. Health becomes stronger when PLC, SCADA, CMMS, or sensor data is connected later.",
   },
   {
-    metric: "18h",
-    title: "saved each month",
-    tag: "Maintenance team",
-    detail:
-      "Manuals, SOPs, and photos moved from folders into a searchable machine memory for common repair work.",
-    tone: "oxide",
+    q: "How does it avoid unreliable AI answers?",
+    a: "MachMemo is designed around source-backed answers. Fix paths show citations, machine context, prior repairs, and confidence signals. When context is missing, the product should show what is missing instead of guessing.",
   },
   {
-    metric: "40",
-    title: "critical assets mapped",
-    tag: "Industrial supplier",
-    detail:
-      "Installed-base service history was structured into machine profiles for faster customer support.",
-    tone: "dark",
+    q: "Can technicians use it on the shop floor?",
+    a: "Yes. The workflows are built around short fix cards, mobile-friendly answers, checklists, source snippets, and technician feedback after the job.",
+  },
+  {
+    q: "Is this suitable for Polish and EU manufacturing SMEs?",
+    a: "That is the core audience. MachMemo is positioned for practical pilots, EU data expectations, and teams that want AI value without a long enterprise transformation program.",
+  },
+  {
+    q: "How long does a pilot take?",
+    a: "A focused pilot usually starts in 3 to 6 weeks. The first phase covers top machines, high-value documents, known recurring faults, and the experts holding the most critical knowledge.",
   },
 ];
 
@@ -221,8 +314,7 @@ const pricingPlans = [
     name: "Memo Start",
     price: "From EUR 690",
     period: "per site / month",
-    description:
-      "For small teams that need clean machine docs and reusable fix history.",
+    description: "For teams that need clean machine docs and a reusable fix library.",
     features: [
       "MachMemo Docs",
       "Machine profiles",
@@ -236,7 +328,7 @@ const pricingPlans = [
     price: "From EUR 1,450",
     period: "per site / month",
     description:
-      "For maintenance teams standardizing troubleshooting across shifts.",
+      "For maintenance teams standardizing verified troubleshooting across shifts.",
     features: [
       "Everything in Start",
       "MachMemo Fix",
@@ -263,92 +355,98 @@ const pricingPlans = [
 ];
 
 const pageContent: Record<
-  Exclude<PageKey, "home" | "pricing" | "contact" | "request-demo" | "signin" | "security" | "case-studies" | "faq" | "roi-calculator">,
+  Exclude<
+    PageKey,
+    | "home"
+    | "pricing"
+    | "contact"
+    | "request-demo"
+    | "signin"
+    | "security"
+    | "case-studies"
+    | "faq"
+    | "roi-calculator"
+  >,
   {
     eyebrow: string;
     title: string;
     copy: string;
-    icon: React.ElementType;
+    icon: IconType;
     bullets: string[];
     workflow: string[];
     stat: string;
+    panel: string;
   }
 > = {
   docs: {
     eyebrow: "MachMemo Docs",
-    title: "Know-how that never walks out the door.",
-    copy: "Turn manuals, SOPs, machine notes, photos, supplier instructions, and senior technician knowledge into a living machine memory that teams can search and trust.",
+    title: "Controlled machine knowledge for every asset.",
+    copy: "Turn manuals, SOPs, drawings, photos, supplier notes, and expert walkthroughs into a searchable machine memory your team can trust during real maintenance work.",
     icon: FileText,
     bullets: [
-      "Import PDFs, SOPs, work instructions, and service notes.",
-      "Create asset-specific knowledge pages for every critical machine.",
-      "Convert technician notes into reusable procedures and fix cards.",
-      "Support multilingual shop-floor teams with concise answer snippets.",
+      "Map PDFs, SOPs, photos, and notes to specific machines.",
+      "Create controlled machine pages for top assets.",
+      "Turn senior technician walkthroughs into reusable procedures.",
+      "Keep search results tied to sources and asset context.",
     ],
     workflow: [
-      "Upload manuals and procedures",
-      "Map documents to machines",
-      "Capture expert walkthroughs",
-      "Search by fault, part, symptom, or asset",
+      "Import documents",
+      "Map to assets",
+      "Capture expert notes",
+      "Search by fault or part",
     ],
-    stat: "18 hours saved monthly on document search",
+    stat: "18h saved monthly on document search",
+    panel: "Document memory",
   },
   fix: {
     eyebrow: "MachMemo Fix",
-    title: "The fastest path from alarm to verified fix.",
-    copy: "Give technicians an AI-guided troubleshooting flow that pulls from real machine history, source documents, prior fixes, safety notes, and parts context.",
+    title: "Verified repair paths from alarm to action.",
+    copy: "Give technicians a guided troubleshooting layer that combines machine history, source documents, prior fixes, safety notes, and parts context before every recommendation.",
     icon: Wrench,
     bullets: [
-      "Ask questions in plain language during a breakdown.",
-      "See likely causes ranked by machine history and documentation.",
-      "Follow step-by-step checks with cited sources and safety notes.",
-      "Save the final repair as a reusable fix for the next incident.",
+      "Ask about faults, alarms, symptoms, or parts in plain language.",
+      "See likely causes ranked by machine context.",
+      "Follow steps with safety notes and citations.",
+      "Save confirmed repairs back into the machine memory.",
     ],
-    workflow: [
-      "Enter fault or alarm",
-      "Review likely causes",
-      "Follow verified checks",
-      "Save resolution to memory",
-    ],
+    workflow: ["Enter fault", "Review likely causes", "Follow checks", "Save repair"],
     stat: "42% faster repeat fault recovery",
+    panel: "Fix recommendation",
   },
   health: {
     eyebrow: "MachMemo Health",
-    title: "See machine risk before it becomes downtime.",
-    copy: "Track health scores, warning patterns, repeat faults, and preventive actions across critical equipment without forcing a full enterprise reliability project.",
+    title: "Asset health that explains what to do next.",
+    copy: "Track health scores, warning patterns, recurring faults, and preventive actions across important machines without forcing a long reliability transformation program.",
     icon: Activity,
     bullets: [
-      "Prioritize assets by risk, fault frequency, and maintenance context.",
-      "Connect sensor, PLC, CMMS, or spreadsheet data when ready.",
-      "Spot recurring failure modes and stale preventive tasks.",
-      "Turn health insights into practical actions for maintenance teams.",
+      "Prioritize assets by risk, fault frequency, and context.",
+      "Connect PLC, SCADA, sensor, CMMS, or spreadsheet data when ready.",
+      "Spot stale preventive tasks and repeat failure modes.",
+      "Turn health signals into practical maintenance actions.",
     ],
     workflow: [
-      "Connect machine signals",
-      "Track health score",
-      "Spot repeat patterns",
-      "Recommend next action",
+      "Connect signals",
+      "Score health",
+      "Explain risk",
+      "Recommend action",
     ],
-    stat: "31% fewer repeat alarms in pilot workflows",
+    stat: "31% fewer repeat alarms",
+    panel: "Health intelligence",
   },
   "machine-shops": {
     eyebrow: "Solution for machine shops",
-    title: "Keep spindle time high and recurring CNC faults low.",
-    copy: "MachMemo helps machine shops preserve setup knowledge, alarm history, maintenance procedures, offsets, parts context, and the practical machine quirks that usually stay in one expert's head.",
+    title: "Keep spindle time high and repeated CNC faults low.",
+    copy: "MachMemo preserves setup knowledge, alarm history, maintenance procedures, offsets, parts context, and the practical machine quirks that usually stay in one expert's head.",
     icon: Factory,
     bullets: [
-      "Capture recurring spindle, coolant, axis, and tool-change issues.",
+      "Capture spindle, coolant, axis, and tool-change issues.",
       "Build machine-specific procedure libraries for CNC assets.",
       "Help newer technicians follow proven recovery paths.",
-      "Reduce repeated downtime from issues already solved once.",
+      "Reduce repeated downtime from solved problems.",
     ],
-    workflow: [
-      "Map CNC assets",
-      "Capture top faults",
-      "Build fix memory",
-      "Track repeat downtime",
-    ],
+    workflow: ["Map CNC assets", "Capture top faults", "Build fix cards", "Track repeats"],
     stat: "Designed for 5 to 200 person shops",
+    panel: "CNC memory",
   },
   "maintenance-teams": {
     eyebrow: "Solution for maintenance teams",
@@ -363,11 +461,12 @@ const pageContent: Record<
     ],
     workflow: [
       "Identify critical assets",
-      "Capture senior know-how",
+      "Capture know-how",
       "Deploy fix cards",
-      "Review team adoption",
+      "Review adoption",
     ],
-    stat: "Built around MTTR, first-time fix, and repeat-fault reduction",
+    stat: "Built around MTTR and first-time fix rate",
+    panel: "Shift memory",
   },
   "industrial-suppliers": {
     eyebrow: "Solution for industrial suppliers",
@@ -386,12 +485,13 @@ const pageContent: Record<
       "Create support playbooks",
       "Surface product insights",
     ],
-    stat: "Useful for OEMs, distributors, and maintenance service partners",
+    stat: "Useful for OEMs, distributors, and service partners",
+    panel: "Service memory",
   },
   about: {
     eyebrow: "Company",
-    title: "Built in Poland for the factories that keep Europe moving.",
-    copy: "MachMemo is a Warsaw-based product startup focused on practical AI for manufacturing SMEs. We believe every machine has a memory. Our job is to make that memory structured, searchable, safe, and useful during real maintenance work.",
+    title: "Built in Poland for factories that keep Europe moving.",
+    copy: "MachMemo is a Warsaw-based product startup focused on practical AI for manufacturing SMEs. Every machine has memory. Our job is to make that memory structured, searchable, safe, and useful during maintenance work.",
     icon: Building2,
     bullets: [
       "Focused on European manufacturing SMEs and industrial suppliers.",
@@ -402,19 +502,13 @@ const pageContent: Record<
     workflow: [
       "Industrial context",
       "AI product craft",
-      "EU data standards",
+      "EU data posture",
       "Practical onboarding",
     ],
     stat: "Machine memory for maintenance intelligence",
+    panel: "Polish product company",
   },
 };
-
-function iconForTitle(title: string) {
-  const found =
-    [...products, ...solutions].find((item) => item.title === title)?.icon ||
-    CircleDot;
-  return found;
-}
 
 export default function MachMemoSite({ page = "home" }: { page?: PageKey }) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -426,36 +520,46 @@ export default function MachMemoSite({ page = "home" }: { page?: PageKey }) {
       gsap.utils.toArray<HTMLElement>(".reveal").forEach((item) => {
         gsap.fromTo(
           item,
-          { autoAlpha: 0, y: 28 },
+          { autoAlpha: 0, y: 22 },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.75,
+            duration: 0.72,
             ease: "power3.out",
             scrollTrigger: {
               trigger: item,
-              start: "top 86%",
+              start: "top 88%",
               once: true,
             },
           },
         );
       });
 
-      gsap.to(".hero-orbit", {
-        rotation: 360,
-        duration: 28,
+      gsap.fromTo(
+        ".memory-link",
+        { scaleX: 0, autoAlpha: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          autoAlpha: 1,
+          duration: 1,
+          stagger: 0.08,
+          ease: "power3.out",
+        },
+      );
+
+      gsap.to(".graph-core-pulse", {
+        scale: 1.16,
+        opacity: 0,
+        duration: 1.8,
         repeat: -1,
-        ease: "none",
-        transformOrigin: "50% 50%",
+        ease: "sine.out",
       });
 
-      gsap.to(".machine-pulse", {
-        scale: 1.08,
-        opacity: 0.42,
-        duration: 1.4,
+      gsap.to(".scan-line", {
+        xPercent: 115,
+        duration: 3.4,
         repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
+        ease: "none",
       });
     });
     return () => ctx.revert();
@@ -523,19 +627,22 @@ function Header({
             <ChevronDown size={15} />
           </button>
         ))}
-        <a className="nav-link direct" href="/pricing">
+        <Link className="nav-link direct" href="/pricing">
           Pricing
-        </a>
+        </Link>
         {activeMenu && <MegaMenu activeMenu={activeMenu} />}
       </nav>
 
       <div className="header-actions">
-        <a href="/signin" className="signin">
+        <span className="locale-pill">
+          <Globe2 size={15} /> PL / EN
+        </span>
+        <Link href="/signin" className="signin">
           Sign In
-        </a>
-        <a href="/request-demo" className="btn btn-primary">
-          Request Demo
-        </a>
+        </Link>
+        <Link href="/request-demo" className="btn btn-primary header-demo">
+          Book demo <ArrowRight size={16} />
+        </Link>
       </div>
 
       <button
@@ -551,13 +658,13 @@ function Header({
         <div className="mobile-menu">
           <MobileGroup title="Products" items={products} />
           <MobileGroup title="Solutions" items={solutions} />
-          <a href="/pricing">Pricing</a>
-          <a href="/about">About</a>
-          <a href="/security">AI & Data</a>
-          <a href="/contact">Contact</a>
-          <a href="/request-demo" className="btn btn-primary">
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/about">About</Link>
+          <Link href="/security">AI & Data</Link>
+          <Link href="/contact">Contact</Link>
+          <Link href="/request-demo" className="btn btn-primary">
             Request Demo
-          </a>
+          </Link>
         </div>
       )}
     </header>
@@ -575,92 +682,54 @@ function MobileGroup({
     <div className="mobile-group">
       <strong>{title}</strong>
       {items.map((item) => (
-        <a key={item.href} href={item.href}>
+        <Link key={item.href} href={item.href}>
           {item.title}
-        </a>
+        </Link>
       ))}
     </div>
   );
 }
 
 function MegaMenu({ activeMenu }: { activeMenu: string }) {
-  const menuItems =
+  const menuItems: MenuItem[] =
     activeMenu === "Products"
       ? products
       : activeMenu === "Solutions"
         ? solutions
         : activeMenu === "Resources"
-          ? [
-              {
-                title: "Case Studies",
-                href: "/resources/case-studies",
-                description: "Pilot-style outcome stories and field notes.",
-                icon: BarChart3,
-              },
-              {
-                title: "FAQ",
-                href: "/resources/faq",
-                description: "Buyer questions about AI, setup, data, and pricing.",
-                icon: MessageSquareQuote,
-              },
-              {
-                title: "ROI Calculator",
-                href: "/resources/roi-calculator",
-                description: "Estimate downtime, search waste, and repeat-fault savings.",
-                icon: Gauge,
-              },
-            ]
-          : [
-              {
-                title: "About MachMemo",
-                href: "/about",
-                description: "Why we are building machine memory for Europe.",
-                icon: Building2,
-              },
-              {
-                title: "AI & Data",
-                href: "/security",
-                description: "Source-backed answers, EU data posture, and security.",
-                icon: ShieldCheck,
-              },
-              {
-                title: "Contact",
-                href: "/contact",
-                description: "Sales, support, partnerships, and company details.",
-                icon: Mail,
-              },
-            ];
+          ? resources
+          : companyLinks;
 
   return (
     <div className="mega-menu">
-      <div className="mega-grid">
-        <div className="mega-items">
+      <div className="mega-layout">
+        <div className="mega-list">
           {menuItems.map((item) => {
             const Icon = item.icon;
             return (
-              <a className="mega-item" href={item.href} key={item.href}>
+              <Link className="mega-item" href={item.href} key={item.href}>
                 <span className="mega-icon">
-                  <Icon size={22} />
+                  <Icon size={21} />
                 </span>
                 <span>
                   <strong>{item.title}</strong>
                   <small>{item.description}</small>
                 </span>
-              </a>
+              </Link>
             );
           })}
         </div>
-        <a className="mega-feature" href="/resources/roi-calculator">
-          <span className="feature-kicker">Featured guide</span>
-          <strong>European SME Maintenance Intelligence Playbook</strong>
+        <Link className="mega-feature" href="/resources/roi-calculator">
+          <span className="feature-kicker">Featured workflow</span>
+          <strong>Fault to verified fix in one memory graph</strong>
           <p>
-            A practical 6-week path for capturing docs, recurring faults, and
-            expert know-how before the next breakdown.
+            Connect documents, prior repairs, signals, and expert notes before
+            the next downtime event reaches production.
           </p>
-          <span>
-            Read the playbook <ArrowRight size={16} />
+          <span className="feature-link">
+            Estimate impact <ArrowRight size={16} />
           </span>
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -671,7 +740,7 @@ function HomePage() {
     <>
       <Hero />
       <TrustStrip />
-      <ProblemSection />
+      <WorkflowStrip />
       <ProductArchitecture />
       <ScrollStory />
       <MemoryLayer />
@@ -688,134 +757,190 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section className="hero section-pad">
+    <section className="hero">
       <div className="hero-copy reveal">
-        <div className="eyebrow">
-          <Sparkles size={16} />
-          AI maintenance intelligence for European manufacturing teams
+        <div className="eyebrow badge-line">
+          <Sparkles size={15} />
+          Verified AI for maintenance and reliability teams
         </div>
-        <h1>Turn machine issues into maintenance intelligence.</h1>
+        <h1>
+          Turn machine issues into <span>memory that works.</span>
+        </h1>
         <p className="hero-subcopy">
-          MachMemo captures manuals, SOPs, recurring faults, technician notes,
-          and machine health signals in one AI-powered memory layer, so teams
-          solve downtime faster and stop losing know-how.
+          Turn machine issues into maintenance intelligence. MachMemo connects
+          documents, repairs, signals, and expert know-how into one verified
+          machine memory layer, so teams solve faster and keep learning.
         </p>
         <div className="hero-actions">
-          <a className="btn btn-primary" href="/request-demo">
-            Request Demo <ArrowRight size={18} />
-          </a>
-          <a className="btn btn-secondary" href="/products/docs">
-            Explore Products
-          </a>
+          <Link className="btn btn-primary" href="/request-demo">
+            Book a demo <ArrowRight size={18} />
+          </Link>
+          <Link className="btn btn-secondary" href="/products/fix">
+            <Play size={16} />
+            See how it works
+          </Link>
         </div>
         <div className="hero-proof">
-          <span>Built for manufacturing SMEs</span>
-          <span>3-6 week pilot rollout</span>
-          <span>EU-ready data posture</span>
+          {proofBadges.map((item) => (
+            <span key={item}>
+              <Check size={14} />
+              {item}
+            </span>
+          ))}
         </div>
       </div>
 
-      <div className="hero-visual reveal" aria-label="MachMemo product animation">
-        <div className="machine-bay">
-          <div className="machine-pulse" />
-          <div className="hero-orbit">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="machine-core">
-            <span className="machine-label">CNC-14</span>
-            <Gauge size={54} />
-            <strong>Health 84</strong>
-          </div>
-        </div>
-        <div className="ui-card fault-card">
-          <span className="status-dot alert" />
-          <div>
-            <small>Fault detected</small>
-            <strong>Spindle vibration above threshold</strong>
-          </div>
-        </div>
-        <div className="ui-card answer-card">
-          <span className="status-dot good" />
-          <div>
-            <small>Verified fix path</small>
-            <strong>Check bearing preload, coolant residue, and axis log</strong>
-          </div>
-        </div>
-        <div className="ui-panel">
-          <div className="panel-head">
-            <span>Machine Memory</span>
-            <strong>Live</strong>
-          </div>
-          <div className="memory-row">
-            <FileText size={16} /> Manual page 42 cited
-          </div>
-          <div className="memory-row">
-            <Wrench size={16} /> Prior fix reused
-          </div>
-          <div className="memory-row">
-            <Activity size={16} /> Health score updated
-          </div>
-        </div>
-      </div>
+      <MemoryGraphHero />
     </section>
+  );
+}
+
+function MemoryGraphHero() {
+  return (
+    <div className="graph-board reveal" aria-label="MachMemo machine memory graph">
+      <div className="scan-line" />
+      <span className="memory-link link-docs" />
+      <span className="memory-link link-faults" />
+      <span className="memory-link link-signals" />
+      <span className="memory-link link-fixes" />
+      <span className="memory-link link-machines" />
+      <span className="memory-link link-experts" />
+
+      <div className="graph-core">
+        <span className="graph-core-pulse" />
+        <span className="core-mark">M</span>
+        <small>Memory graph</small>
+      </div>
+
+      <GraphNode
+        className="node-docs"
+        icon={FileText}
+        title="Documents"
+        value="1,248 files"
+        detail="SOP, manuals, drawings"
+      />
+      <GraphNode
+        className="node-faults"
+        icon={AlertTriangle}
+        title="Failures"
+        value="842 cases"
+        detail="Alarm and event history"
+      />
+      <GraphNode
+        className="node-signals"
+        icon={Radio}
+        title="Signals"
+        value="2.4M / day"
+        detail="SCADA, IoT, trends"
+      />
+      <GraphNode
+        className="node-fixes"
+        icon={Wrench}
+        title="Fixes"
+        value="1,103 answers"
+        detail="Parts, steps, times"
+      />
+      <GraphNode
+        className="node-machines"
+        icon={Factory}
+        title="Machines"
+        value="156 active"
+        detail="Lines and components"
+      />
+      <GraphNode
+        className="node-experts"
+        icon={UserRound}
+        title="Experts"
+        value="28 specialists"
+        detail="Captured know-how"
+      />
+
+      <article className="verified-answer">
+        <div className="answer-top">
+          <span>Active: Pompa P-101</span>
+          <strong>Moderate</strong>
+        </div>
+        <h3>Unusual vibration detected</h3>
+        <p>
+          Most likely cause: loose mounting bolts or bearing play after the
+          last service window.
+        </p>
+        <div className="confidence-track">
+          <span />
+          <span />
+          <span />
+        </div>
+        <ul className="source-list">
+          <li>
+            <FileText size={14} /> WO-2024-0312 <strong>98%</strong>
+          </li>
+          <li>
+            <BookOpen size={14} /> SOP-PMP-07 <strong>96%</strong>
+          </li>
+          <li>
+            <Activity size={14} /> SCADA trend <strong>94%</strong>
+          </li>
+          <li>
+            <UserRound size={14} /> Jan Kowalski note <strong>93%</strong>
+          </li>
+        </ul>
+      </article>
+    </div>
+  );
+}
+
+function GraphNode({
+  className,
+  icon: Icon,
+  title,
+  value,
+  detail,
+}: {
+  className: string;
+  icon: IconType;
+  title: string;
+  value: string;
+  detail: string;
+}) {
+  return (
+    <article className={`memory-node ${className}`}>
+      <Icon size={21} />
+      <div>
+        <strong>{title}</strong>
+        <span>{value}</span>
+        <small>{detail}</small>
+      </div>
+    </article>
   );
 }
 
 function TrustStrip() {
   return (
     <section className="trust-strip">
-      <span>Built for</span>
-      {[
-        "CNC machining",
-        "Packaging",
-        "Metal fabrication",
-        "Food production",
-        "Plastics",
-        "Automotive suppliers",
-      ].map((item) => (
+      <span>Built for Polish and European manufacturers</span>
+      {industryTags.map((item) => (
         <strong key={item}>{item}</strong>
       ))}
     </section>
   );
 }
 
-function ProblemSection() {
+function WorkflowStrip() {
   return (
-    <section className="section-pad problem-section">
-      <div className="section-heading reveal">
-        <span className="eyebrow">The real maintenance gap</span>
-        <h2>Every breakdown teaches the factory something. Most teams lose that lesson.</h2>
-      </div>
-      <div className="problem-grid">
-        {[
-          {
-            title: "Docs are scattered",
-            copy: "Manuals, PDFs, SOPs, and supplier notes live in disconnected folders.",
-            icon: BookOpen,
-          },
-          {
-            title: "Fixes stay tribal",
-            copy: "Senior technicians know the shortcut, but the next shift starts from zero.",
-            icon: Brain,
-          },
-          {
-            title: "Health data is underused",
-            copy: "Alarms, readings, and maintenance history rarely become early warnings.",
-            icon: Radio,
-          },
-        ].map((item) => {
-          const Icon = item.icon;
-          return (
-            <article className="problem-card reveal" key={item.title}>
-              <Icon size={26} />
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-            </article>
-          );
-        })}
-      </div>
+    <section className="workflow-strip">
+      {workflowSteps.map((step, index) => {
+        const Icon = step.icon;
+        return (
+          <article className="workflow-pill reveal" key={step.title}>
+            <span className="step-index">{index + 1}</span>
+            <Icon size={23} />
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.copy}</p>
+            </div>
+          </article>
+        );
+      })}
     </section>
   );
 }
@@ -823,35 +948,34 @@ function ProblemSection() {
 function ProductArchitecture() {
   return (
     <section className="section-pad product-section">
-      <div className="split-heading reveal">
-        <div>
-          <span className="eyebrow">Product architecture</span>
-          <h2>Docs, Fix, and Health work as one machine memory layer.</h2>
-        </div>
-        <p>
-          Start with the sharpest pain - scattered knowledge or recurring
-          downtime - then extend into health intelligence when your team is
-          ready.
-        </p>
-      </div>
+      <SectionIntro
+        eyebrow="Product architecture"
+        title="Docs, Fix, and Health work as one verified memory layer."
+        copy="Start with the sharpest operational pain, then expand. Each product strengthens the same asset memory instead of creating another silo."
+      />
       <div className="product-grid">
-        {products.map((product) => {
+        {products.map((product, index) => {
           const Icon = product.icon;
           return (
-            <a className="product-card reveal" href={product.href} key={product.title}>
-              <div className="product-top">
+            <Link
+              className="product-card reveal"
+              href={product.href}
+              key={product.title}
+            >
+              <div className="product-card-head">
                 <span className="icon-badge">
-                  <Icon size={24} />
+                  <Icon size={23} />
                 </span>
                 <span>{product.label}</span>
               </div>
               <h3>{product.title}</h3>
               <p>{product.description}</p>
-              <div className="product-metric">{product.metric}</div>
-              <span className="card-link">
-                Explore product <ArrowRight size={16} />
-              </span>
-            </a>
+              <MiniProductPanel index={index} />
+              <div className="product-footer">
+                <strong>{product.metric}</strong>
+                <span>{product.signal}</span>
+              </div>
+            </Link>
           );
         })}
       </div>
@@ -859,43 +983,67 @@ function ProductArchitecture() {
   );
 }
 
+function MiniProductPanel({ index }: { index: number }) {
+  const panels = [
+    ["Manuals", "SOPs", "Expert notes"],
+    ["Likely cause", "Safety step", "Prior repair"],
+    ["Health score", "Risk trend", "Next action"],
+  ];
+
+  return (
+    <div className="mini-product-panel">
+      {panels[index].map((item, itemIndex) => (
+        <span key={item}>
+          <i />
+          {item}
+          <strong>{itemIndex === 0 ? "Live" : "Linked"}</strong>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function ScrollStory() {
   const steps = [
     {
       title: "A fault appears",
-      copy: "Line 3 reports abnormal vibration after a bearing replacement.",
+      copy: "Line 3 reports vibration after a bearing replacement. The previous shift only left a short note.",
       icon: AlertTriangle,
     },
     {
-      title: "MachMemo gathers context",
-      copy: "Manuals, service history, parts, expert notes, and prior fixes are pulled into view.",
+      title: "Context is assembled",
+      copy: "MachMemo gathers manuals, prior work orders, SCADA trends, part numbers, and technician notes.",
       icon: Search,
     },
     {
-      title: "A verified path is built",
-      copy: "Likely causes, inspection steps, safety notes, and source references appear for the technician.",
+      title: "A verified answer is built",
+      copy: "The technician sees likely causes, safety checks, and source citations before taking action.",
       icon: ShieldCheck,
     },
     {
-      title: "The fix is captured",
-      copy: "Technician feedback becomes a reusable fix card for the next shift.",
+      title: "The fix becomes memory",
+      copy: "The confirmed repair is saved back to the asset, ready for the next shift and the next similar fault.",
       icon: ClipboardCheck,
     },
   ];
 
   return (
-    <section className="dark-section scroll-story">
-      <div className="section-heading reveal">
-        <span className="eyebrow">From alarm to memory</span>
-        <h2>A downtime event should make every future repair smarter.</h2>
+    <section className="section-pad story-section">
+      <div className="story-copy reveal">
+        <span className="eyebrow">From fault to memory</span>
+        <h2>A breakdown should make every future repair smarter.</h2>
+        <p>
+          MachMemo treats downtime as a learning loop. The answer is useful in
+          the moment, but the real value is the reusable memory left behind.
+        </p>
       </div>
-      <div className="story-grid">
+      <div className="story-rail">
         {steps.map((step, index) => {
           const Icon = step.icon;
           return (
             <article className="story-card reveal" key={step.title}>
-              <span className="step-number">Step {index + 1}</span>
-              <Icon size={28} />
+              <span className="step-index">{index + 1}</span>
+              <Icon size={25} />
               <h3>{step.title}</h3>
               <p>{step.copy}</p>
             </article>
@@ -915,15 +1063,12 @@ function MemoryLayer() {
   ] as const;
 
   return (
-    <section className="memory-layer">
-      <div className="section-heading reveal">
-        <span className="eyebrow">Machine Memory Layer</span>
-        <h2>One memory layer for every machine.</h2>
-        <p>
-          MachMemo unifies the records that maintenance teams already create
-          into a trusted operating memory for docs, fixes, and health.
-        </p>
-      </div>
+    <section className="section-pad memory-layer">
+      <SectionIntro
+        eyebrow="Machine memory layer"
+        title="One verified memory for every machine, not another folder."
+        copy="Documents, issues, signals, and experience become one asset-level system your team can search, trust, and improve."
+      />
       <div className="memory-inputs">
         {inputs.map(([title, copy, Icon]) => (
           <article className="memory-input reveal" key={title}>
@@ -934,7 +1079,7 @@ function MemoryLayer() {
         ))}
       </div>
       <div className="memory-output reveal">
-        <Layers3 size={28} />
+        <Layers3 size={27} />
         <strong>Unified into MachMemo machine memory</strong>
       </div>
     </section>
@@ -944,15 +1089,15 @@ function MemoryLayer() {
 function CaseStudyCarousel() {
   const scroller = useRef<HTMLDivElement | null>(null);
   const move = (dir: number) => {
-    scroller.current?.scrollBy({ left: dir * 380, behavior: "smooth" });
+    scroller.current?.scrollBy({ left: dir * 390, behavior: "smooth" });
   };
 
   return (
     <section className="section-pad cases-section">
-      <div className="carousel-heading reveal">
+      <div className="split-heading reveal">
         <div>
           <span className="eyebrow">Field proof</span>
-          <h2>Pilot-style outcomes built around real maintenance metrics.</h2>
+          <h2>Premium case cards without pretending every pilot is a logo wall.</h2>
         </div>
         <div className="carousel-buttons">
           <button type="button" onClick={() => move(-1)} aria-label="Previous case">
@@ -966,18 +1111,20 @@ function CaseStudyCarousel() {
       <div className="case-scroller" ref={scroller}>
         {caseStudies.map((item) => (
           <article className={`case-card tone-${item.tone}`} key={item.title}>
-            <div className="case-factory">
+            <div className="case-media">
+              <span />
               <span />
               <span />
               <span />
             </div>
             <div className="case-content">
-              <span>{item.tag}</span>
+              <span>{item.industry}</span>
+              <h3>{item.label}</h3>
               <strong>{item.metric}</strong>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
+              <p>{item.title}</p>
+              <small>{item.detail}</small>
             </div>
-            <ArrowRight className="case-arrow" size={26} />
+            <ArrowRight className="case-arrow" size={24} />
           </article>
         ))}
       </div>
@@ -986,36 +1133,41 @@ function CaseStudyCarousel() {
 }
 
 function IntegrationsSection() {
+  const tools = ["Excel", "CMMS", "SAP PM", "PLC", "SCADA", "Sensors"];
+
   return (
     <section className="section-pad integrations-section">
-      <div className="integration-visual reveal">
-        <div className="connector-ring">
-          <PlugZap size={34} />
-          <span className="ring ring-one" />
-          <span className="ring ring-two" />
-        </div>
-        {["Excel", "CMMS", "SAP", "PLC", "SCADA", "Sensors"].map((item) => (
-          <span className={`integration-pill pill-${item.toLowerCase()}`} key={item}>
-            {item}
-          </span>
-        ))}
-      </div>
       <div className="integration-copy reveal">
         <span className="eyebrow">No rip-and-replace</span>
-        <h2>Start with the tools and records your team already uses.</h2>
+        <h2>Start with the tools and records your plant already uses.</h2>
+        <p>
+          MachMemo can begin with files and exports, then connect live systems
+          when the pilot has earned trust.
+        </p>
         <ul className="check-list">
           {[
-            "Import documents, spreadsheets, and work-order exports.",
-            "Connect CMMS, PLC, SCADA, or sensor data when the pilot is ready.",
+            "Import documents, spreadsheets, photos, and work-order exports.",
+            "Connect CMMS, PLC, SCADA, or sensor data when ready.",
             "Keep AI answers grounded in your own machine context.",
-            "Deploy without a heavy enterprise reliability program.",
+            "Deploy with a practical EU data and access-control posture.",
           ].map((item) => (
             <li key={item}>
-              <Check size={18} />
+              <Check size={17} />
               {item}
             </li>
           ))}
         </ul>
+      </div>
+      <div className="integration-board reveal">
+        <div className="integration-core">
+          <PlugZap size={30} />
+          <strong>MachMemo</strong>
+        </div>
+        {tools.map((item, index) => (
+          <span className={`integration-pill pill-${index}`} key={item}>
+            {item}
+          </span>
+        ))}
       </div>
     </section>
   );
@@ -1023,31 +1175,29 @@ function IntegrationsSection() {
 
 function StatsSection() {
   return (
-    <section className="stats-section">
+    <section className="section-pad stats-section">
       <div className="stats-copy reveal">
         <span className="eyebrow">Operating impact</span>
-        <h2>
-          Built for measurable maintenance work, not vague AI theatre.
-        </h2>
+        <h2>Measurable maintenance outcomes, not vague AI theatre.</h2>
         <p>
-          Track the outcomes buyers care about: time to repair, repeat faults,
-          procedure reuse, technician adoption, and asset health risk.
+          Track the numbers buyers care about: repeat fault rate, time to
+          repair, source-backed answer coverage, and knowledge reuse.
         </p>
-        <div className="stats-grid">
-          {[
-            ["42%", "faster repeat fault recovery"],
-            ["31%", "fewer recurring alarms"],
-            ["3-6", "week pilot rollout"],
-            ["24/7", "machine memory access"],
-          ].map(([value, label]) => (
-            <div className="stat-item" key={label}>
-              <strong>{value}</strong>
-              <span>{label}</span>
-            </div>
-          ))}
-        </div>
       </div>
-      <div className="masked-video reveal">
+      <div className="stats-grid">
+        {[
+          ["98%", "source-backed answers in scoped pilot data"],
+          ["-27%", "unplanned downtime in repeated fault workflows"],
+          ["+18%", "technician throughput on common issues"],
+          ["2.4M", "signals reviewed daily when connected"],
+        ].map(([value, label]) => (
+          <article className="stat-card reveal" key={label}>
+            <strong>{value}</strong>
+            <span>{label}</span>
+          </article>
+        ))}
+      </div>
+      <div className="spotlight-video reveal">
         <video autoPlay muted loop playsInline>
           <source src="/machmemo-spotlight.mp4" type="video/mp4" />
         </video>
@@ -1059,14 +1209,15 @@ function StatsSection() {
 function Testimonials() {
   return (
     <section className="section-pad testimonial-section">
-      <div className="section-heading reveal">
-        <span className="eyebrow">Field notes</span>
-        <h2>Credible proof without pretending every pilot is a logo wall.</h2>
-      </div>
+      <SectionIntro
+        eyebrow="Field notes"
+        title="The product should feel useful to the technician and credible to the plant manager."
+        copy="MachMemo is designed for the everyday friction between machine knowledge, documentation, and downtime."
+      />
       <div className="testimonial-grid">
         {testimonials.map((item) => (
           <article className="testimonial-card reveal" key={item.quote}>
-            <MessageSquareQuote size={26} />
+            <MessageSquareQuote size={25} />
             <p>&quot;{item.quote}&quot;</p>
             <div>
               <strong>{item.role}</strong>
@@ -1087,9 +1238,9 @@ function PricingPreview() {
           <span className="eyebrow">Pricing</span>
           <h2>Start small, prove value, expand machine by machine.</h2>
         </div>
-        <a className="btn btn-secondary" href="/pricing">
+        <Link className="btn btn-secondary" href="/pricing">
           View pricing <ArrowRight size={16} />
-        </a>
+        </Link>
       </div>
       <PricingCards compact />
     </section>
@@ -1099,18 +1250,12 @@ function PricingPreview() {
 function FAQSection() {
   return (
     <section className="section-pad faq-section">
-      <div className="section-heading reveal">
-        <span className="eyebrow">FAQ</span>
-        <h2>The practical questions maintenance buyers ask first.</h2>
-      </div>
-      <div className="faq-list">
-        {faqItems.map((item) => (
-          <details className="faq-item reveal" key={item.q}>
-            <summary>{item.q}</summary>
-            <p>{item.a}</p>
-          </details>
-        ))}
-      </div>
+      <SectionIntro
+        eyebrow="FAQ"
+        title="The practical questions maintenance buyers ask first."
+        copy="Clear answers for teams evaluating whether AI can fit real plant work."
+      />
+      <FAQList limit={4} />
     </section>
   );
 }
@@ -1118,132 +1263,144 @@ function FAQSection() {
 function FinalCTA() {
   return (
     <section className="final-cta">
-      <span className="eyebrow">Ready when your next fault appears</span>
+      <span className="eyebrow">Ready when the next fault appears</span>
       <h2>Build your factory&apos;s machine memory.</h2>
       <p>
         Start with your top five knowledge-critical machines and turn recurring
         downtime into reusable maintenance intelligence.
       </p>
-      <a className="btn btn-primary" href="/request-demo">
+      <Link className="btn btn-primary" href="/request-demo">
         Request Demo <ArrowRight size={18} />
-      </a>
+      </Link>
     </section>
+  );
+}
+
+function SectionIntro({
+  eyebrow,
+  title,
+  copy,
+}: {
+  eyebrow: string;
+  title: string;
+  copy: string;
+}) {
+  return (
+    <div className="section-heading reveal">
+      <span className="eyebrow">{eyebrow}</span>
+      <h2>{title}</h2>
+      <p>{copy}</p>
+    </div>
   );
 }
 
 function DetailPage({ page }: { page: keyof typeof pageContent }) {
   const data = pageContent[page];
   const Icon = data.icon;
-  const related = page === "docs" || page === "fix" || page === "health" ? products : solutions;
+  const related =
+    page === "docs" || page === "fix" || page === "health" ? products : solutions;
 
   return (
     <>
-      <section className="page-hero">
-        <div className="page-hero-copy reveal">
+      <section className="inner-hero">
+        <div className="inner-copy reveal">
           <span className="eyebrow">{data.eyebrow}</span>
           <h1>{data.title}</h1>
           <p>{data.copy}</p>
           <div className="hero-actions">
-            <a className="btn btn-primary" href="/request-demo">
+            <Link className="btn btn-primary" href="/request-demo">
               Request Demo <ArrowRight size={18} />
-            </a>
-            <a className="btn btn-secondary" href="/security">
+            </Link>
+            <Link className="btn btn-secondary" href="/security">
               AI & Data
-            </a>
+            </Link>
           </div>
         </div>
-        <div className="detail-visual reveal">
-          <Icon size={42} />
-          <strong>{data.stat}</strong>
-          <div className="mini-dashboard">
+        <div className="detail-panel reveal">
+          <div className="detail-panel-top">
+            <span className="icon-badge">
+              <Icon size={26} />
+            </span>
+            <strong>{data.panel}</strong>
+          </div>
+          <div className="detail-health">
+            <span>{data.stat}</span>
+            <strong>Live pilot view</strong>
+          </div>
+          <div className="detail-flow">
             {data.workflow.map((step, index) => (
               <span key={step}>
-                <small>0{index + 1}</small>
+                <i>{index + 1}</i>
                 {step}
               </span>
             ))}
           </div>
         </div>
       </section>
-      <section className="section-pad">
+
+      <section className="section-pad split-feature">
+        <div className="feature-copy reveal">
+          <span className="eyebrow">Workflow</span>
+          <h2>Made for the moment when a machine is down and the team needs context.</h2>
+          <p>
+            MachMemo keeps the interface focused: what happened, what sources
+            matter, what has worked before, and what should happen next.
+          </p>
+        </div>
         <div className="feature-grid">
           {data.bullets.map((item) => (
             <article className="feature-card reveal" key={item}>
-              <Check size={20} />
+              <Check size={18} />
               <p>{item}</p>
             </article>
           ))}
         </div>
       </section>
-      <section className="dark-section product-workflow">
-        <div className="section-heading reveal">
-          <span className="eyebrow">Workflow</span>
-          <h2>How teams use this in daily maintenance work.</h2>
-        </div>
-        <div className="workflow-line">
-          {data.workflow.map((step, index) => (
-            <article className="workflow-step reveal" key={step}>
-              <span>{index + 1}</span>
-              <strong>{step}</strong>
-            </article>
-          ))}
+
+      <section className="section-pad related-section">
+        <SectionIntro
+          eyebrow="Connected platform"
+          title="Every page connects back to the same machine memory."
+          copy="Products and solutions strengthen one another, so knowledge captured in one workflow improves the next."
+        />
+        <div className="related-grid">
+          {related.map((item) => {
+            const ItemIcon = item.icon;
+            return (
+              <Link className="related-card reveal" href={item.href} key={item.title}>
+                <ItemIcon size={24} />
+                <strong>{item.title}</strong>
+                <p>{item.description}</p>
+                <span>
+                  Explore <ArrowRight size={15} />
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </section>
-      <RelatedLinks items={related} />
-      <FAQSection />
       <FinalCTA />
     </>
-  );
-}
-
-function RelatedLinks({
-  items,
-}: {
-  items: Array<{ title: string; href: string; description: string }>;
-}) {
-  return (
-    <section className="section-pad related-section">
-      <div className="split-heading reveal">
-        <div>
-          <span className="eyebrow">Related</span>
-          <h2>Explore the rest of the MachMemo platform.</h2>
-        </div>
-      </div>
-      <div className="related-grid">
-        {items.map((item) => {
-          const Icon = iconForTitle(item.title);
-          return (
-            <a className="related-card reveal" href={item.href} key={item.href}>
-              <Icon size={22} />
-              <strong>{item.title}</strong>
-              <p>{item.description}</p>
-            </a>
-          );
-        })}
-      </div>
-    </section>
   );
 }
 
 function PricingPage() {
   return (
     <>
-      <section className="page-hero centered">
-        <div className="page-hero-copy reveal">
+      <section className="inner-hero centered">
+        <div className="inner-copy reveal">
           <span className="eyebrow">Pricing</span>
-          <h1>Transparent enough for SMEs. Flexible enough for real factories.</h1>
+          <h1>Pricing built around practical pilots and plant expansion.</h1>
           <p>
-            Start with Docs and Fix, then expand into Health when your machines
-            and data sources are ready. Pricing scales by site, machine scope,
-            and integrations.
+            Start with a focused machine memory pilot. Expand into verified
+            troubleshooting and health intelligence once value is visible.
           </p>
         </div>
       </section>
-      <section className="section-pad">
+      <section className="section-pad pricing-page">
         <PricingCards />
       </section>
       <FAQSection />
-      <FinalCTA />
     </>
   );
 }
@@ -1256,13 +1413,11 @@ function PricingCards({ compact = false }: { compact?: boolean }) {
           className={`pricing-card reveal ${plan.featured ? "featured" : ""}`}
           key={plan.name}
         >
-          {plan.featured && <span className="plan-badge">Most popular</span>}
+          {plan.featured && <span className="plan-badge">Most requested</span>}
           <h3>{plan.name}</h3>
+          <strong className="plan-price">{plan.price}</strong>
+          <span className="plan-period">{plan.period}</span>
           <p>{plan.description}</p>
-          <div className="plan-price">
-            <strong>{plan.price}</strong>
-            <span>{plan.period}</span>
-          </div>
           <ul>
             {plan.features.map((feature) => (
               <li key={feature}>
@@ -1271,9 +1426,9 @@ function PricingCards({ compact = false }: { compact?: boolean }) {
               </li>
             ))}
           </ul>
-          <a className="btn btn-secondary" href="/request-demo">
-            Discuss this plan
-          </a>
+          <Link className="btn btn-primary" href="/request-demo">
+            Request quote
+          </Link>
         </article>
       ))}
     </div>
@@ -1282,154 +1437,116 @@ function PricingCards({ compact = false }: { compact?: boolean }) {
 
 function ContactPage() {
   return (
-    <>
-      <section className="page-hero">
-        <div className="page-hero-copy reveal">
-          <span className="eyebrow">Contact</span>
-          <h1>Talk to MachMemo about your maintenance memory.</h1>
-          <p>
-            Tell us about your machines, recurring faults, documents, and
-            current maintenance systems. We will help shape a focused pilot.
-          </p>
-        </div>
-        <CompanyCard />
-      </section>
-      <section className="section-pad contact-grid-section">
-        <ContactForm title="Send a message" cta="Send message" />
+    <section className="section-pad contact-section">
+      <div className="contact-details reveal">
+        <span className="eyebrow">Contact</span>
+        <h1>Talk with the MachMemo team in Poland.</h1>
+        <p>
+          For demos, pilots, supplier partnerships, and industrial AI questions,
+          contact our Warsaw office.
+        </p>
         <ContactDetails />
-      </section>
-    </>
+      </div>
+      <LeadForm title="Send a message" />
+    </section>
   );
 }
 
 function DemoPage() {
   return (
-    <section className="demo-page">
+    <section className="section-pad demo-section">
       <div className="demo-copy reveal">
         <span className="eyebrow">Request demo</span>
-        <h1>Map your first five knowledge-critical machines.</h1>
+        <h1>Show us the machines where knowledge gets lost.</h1>
         <p>
-          A MachMemo demo is practical: we talk through your recurring downtime,
-          scattered docs, expert know-how, and which workflow should go first.
+          We will map a pilot around your top assets, recurring faults,
+          documents, and team knowledge. No generic deck first.
         </p>
-        <ul className="check-list">
-          <li>
-            <Check size={18} /> 30-minute discovery call
-          </li>
-          <li>
-            <Check size={18} /> Pilot scope and data-readiness checklist
-          </li>
-          <li>
-            <Check size={18} /> Pricing guidance for your site
-          </li>
-        </ul>
+        <div className="demo-checks">
+          {[
+            "30-minute discovery call",
+            "Pilot scope for 5-15 critical machines",
+            "EU data and access review",
+          ].map((item) => (
+            <span key={item}>
+              <Check size={15} />
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
-      <ContactForm title="Request your demo" cta="Request demo" demo />
+      <LeadForm title="Book a MachMemo demo" demo />
     </section>
   );
 }
 
-function ContactForm({
-  title,
-  cta,
-  demo = false,
-}: {
-  title: string;
-  cta: string;
-  demo?: boolean;
-}) {
+function LeadForm({ title, demo = false }: { title: string; demo?: boolean }) {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
-    <form className="contact-form reveal">
+    <form
+      className="lead-form reveal"
+      onSubmit={(event) => {
+        event.preventDefault();
+        setSubmitted(true);
+      }}
+    >
       <h2>{title}</h2>
       <label>
-        Full name
-        <input type="text" placeholder="Anna Kowalska" />
+        Name
+        <input required placeholder="Anna Kowalska" />
       </label>
       <label>
         Work email
-        <input type="email" placeholder="anna@factory.pl" />
+        <input required type="email" placeholder="anna@fabryka.pl" />
       </label>
       <label>
         Company
-        <input type="text" placeholder="Your manufacturing company" />
+        <input required placeholder="Zaklady Produkcyjne Nowa Sp. z o.o." />
       </label>
       {demo && (
-        <div className="form-row">
-          <label>
-            Company type
-            <select>
-              <option>Machine shop</option>
-              <option>Maintenance team</option>
-              <option>Industrial supplier</option>
-              <option>Manufacturing SME</option>
-            </select>
-          </label>
-          <label>
-            Machines in scope
-            <select>
-              <option>1-10</option>
-              <option>11-40</option>
-              <option>41-100</option>
-              <option>100+</option>
-            </select>
-          </label>
-        </div>
+        <label>
+          Main maintenance challenge
+          <select defaultValue="Recurring faults">
+            <option>Recurring faults</option>
+            <option>Scattered documentation</option>
+            <option>Retiring expert knowledge</option>
+            <option>Asset health visibility</option>
+          </select>
+        </label>
       )}
       <label>
         Message
-        <textarea placeholder="Tell us about your recurring downtime, machine docs, or maintenance workflow." />
+        <textarea placeholder="Tell us about your machines, team, and downtime problem." />
       </label>
-      <button className="btn btn-primary" type="button">
-        {cta} <ArrowRight size={18} />
+      <button className="btn btn-primary" type="submit">
+        {demo ? "Request demo" : "Send message"} <ArrowRight size={16} />
       </button>
+      {submitted && (
+        <p className="form-success">
+          Thanks. The MachMemo team will follow up from Warszawa.
+        </p>
+      )}
     </form>
   );
 }
 
 function ContactDetails() {
   return (
-    <div className="contact-details reveal">
-      <h2>Company details</h2>
-      <p>
-        MachMemo Sp. z o.o. is a Poland-based product startup building AI
-        maintenance intelligence for European manufacturing SMEs.
-      </p>
-      <ul>
-        <li>
-          <MapPin size={18} /> Rondo Daszynskiego 2B, 00-843 Warsaw, Poland
-        </li>
-        <li>
-          <Mail size={18} /> hello@machmemo.com
-        </li>
-        <li>
-          <Mail size={18} /> sales@machmemo.com
-        </li>
-        <li>
-          <Phone size={18} /> +48 22 263 74 18
-        </li>
-      </ul>
-      <div className="contact-mini">
-        <strong>Support</strong>
-        <span>support@machmemo.com</span>
-      </div>
-      <div className="contact-mini">
-        <strong>Partnerships</strong>
-        <span>partners@machmemo.com</span>
-      </div>
+    <div className="contact-list">
+      <span>
+        <Building2 size={18} /> MachMemo Sp. z o.o.
+      </span>
+      <span>
+        <MapPin size={18} /> ul. Prosta 20, 00-850 Warszawa, Polska
+      </span>
+      <span>
+        <Mail size={18} /> kontakt@machmemo.com
+      </span>
+      <span>
+        <Phone size={18} /> +48 22 104 83 17
+      </span>
     </div>
-  );
-}
-
-function CompanyCard() {
-  return (
-    <aside className="company-card reveal">
-      <Globe2 size={28} />
-      <strong>Poland / EU</strong>
-      <p>
-        Built for manufacturers that need practical AI, GDPR-aware data
-        posture, and fast maintenance value without enterprise overhead.
-      </p>
-    </aside>
   );
 }
 
@@ -1441,30 +1558,38 @@ function SignInPage() {
           <span className="brand-mark" />
           <span className="brand-word">MachMemo</span>
         </Link>
-        <h1>Sign in to your machine memory.</h1>
-        <label>
-          Email
-          <input type="email" placeholder="you@company.com" />
-        </label>
-        <label>
-          Password
-          <input type="password" placeholder="Password" />
-        </label>
-        <button type="button" className="btn btn-primary">
-          Sign In
-        </button>
-        <a href="/contact">Forgot password?</a>
+        <h1>Sign in to machine memory.</h1>
+        <p>Access docs, fix paths, health signals, and source-backed answers.</p>
+        <form>
+          <label>
+            Email
+            <input type="email" placeholder="technik@zaklad.pl" />
+          </label>
+          <label>
+            Password
+            <input type="password" placeholder="••••••••" />
+          </label>
+          <button className="btn btn-primary" type="button">
+            Sign In
+          </button>
+        </form>
       </div>
-      <div className="signin-aside reveal">
-        <span className="eyebrow">Live asset context</span>
-        <h2>Critical assets</h2>
-        {["CNC-14", "PACK-03", "PRESS-08"].map((asset, index) => (
-          <div className="asset-row" key={asset}>
-            <span>{asset}</span>
-            <strong>{[84, 67, 91][index]} health</strong>
-          </div>
-        ))}
-      </div>
+      <aside className="signin-aside reveal">
+        <span className="eyebrow">Plant context</span>
+        <h2>Line 3 has three open memory updates.</h2>
+        <div className="signin-update">
+          <strong>Verified fix saved</strong>
+          <span>Pompa P-101 vibration after service window</span>
+        </div>
+        <div className="signin-update">
+          <strong>Health score changed</strong>
+          <span>Extruder-310 moved from 82 to 74</span>
+        </div>
+        <div className="signin-update">
+          <strong>Document linked</strong>
+          <span>SOP-PMP-07 attached to recurring failure mode</span>
+        </div>
+      </aside>
     </section>
   );
 }
@@ -1472,48 +1597,31 @@ function SignInPage() {
 function SecurityPage() {
   return (
     <>
-      <section className="page-hero">
-        <div className="page-hero-copy reveal">
+      <section className="inner-hero centered">
+        <div className="inner-copy reveal">
           <span className="eyebrow">AI & Data</span>
-          <h1>Source-backed AI for real maintenance decisions.</h1>
+          <h1>Verified answers, cited sources, and EU-ready controls.</h1>
           <p>
-            MachMemo is designed for industrial teams that need trust. Answers
-            should be grounded in your own documents, asset history, technician
-            notes, and machine context.
+            MachMemo is designed for practical industrial AI: answers tied to
+            sources, access controls, audit trails, and deployment options that
+            fit European manufacturing expectations.
           </p>
         </div>
-        <div className="detail-visual reveal">
-          <LockKeyhole size={42} />
-          <strong>EU-ready security and data posture</strong>
-          <div className="mini-dashboard">
-            <span>
-              <small>01</small> Source attribution
-            </span>
-            <span>
-              <small>02</small> Access controls
-            </span>
-            <span>
-              <small>03</small> Data residency options
-            </span>
-          </div>
-        </div>
       </section>
-      <section className="dark-section">
-        <div className="story-grid">
-          {[
-            ["Verified answers", "Every fix path should show the source material behind it.", ShieldCheck],
-            ["Human feedback", "Technicians confirm what worked so the memory improves.", UserRound],
-            ["Data control", "Teams can separate documents, machine records, and user permissions.", Database],
-          ].map(([title, copy, Icon]) => (
-            <article className="story-card reveal" key={title as string}>
-              {React.createElement(Icon as React.ElementType, { size: 28 })}
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </article>
-          ))}
-        </div>
+      <section className="section-pad security-grid">
+        {[
+          ["Source attribution", "Every fix path shows the documents, repairs, signals, and notes used to form the answer.", FileText],
+          ["Role-based access", "Separate technician, maintenance lead, supplier, and admin permissions.", LockKeyhole],
+          ["EU data posture", "Designed for GDPR expectations, EU hosting options, and controlled onboarding.", Globe2],
+          ["Refuse to guess", "If context is missing, MachMemo should surface the missing evidence instead of inventing confidence.", ShieldCheck],
+        ].map(([title, copy, Icon]) => (
+          <article className="feature-card reveal" key={title as string}>
+            <Icon size={24} />
+            <h3>{title as string}</h3>
+            <p>{copy as string}</p>
+          </article>
+        ))}
       </section>
-      <FAQSection />
     </>
   );
 }
@@ -1521,14 +1629,13 @@ function SecurityPage() {
 function CaseStudiesPage() {
   return (
     <>
-      <section className="page-hero centered">
-        <div className="page-hero-copy reveal">
+      <section className="inner-hero centered">
+        <div className="inner-copy reveal">
           <span className="eyebrow">Case studies</span>
-          <h1>Outcome stories for maintenance intelligence pilots.</h1>
+          <h1>Maintenance scenarios built around measurable outcomes.</h1>
           <p>
-            These cards show the kind of operational proof MachMemo is designed
-            to create: faster fixes, fewer repeat faults, and less time hunting
-            for documents.
+            These example scenarios show how MachMemo can be scoped for
+            machine shops, maintenance teams, and industrial suppliers.
           </p>
         </div>
       </section>
@@ -1540,47 +1647,78 @@ function CaseStudiesPage() {
 
 function FAQPage() {
   return (
-    <>
-      <section className="page-hero centered">
-        <div className="page-hero-copy reveal">
-          <span className="eyebrow">FAQ</span>
-          <h1>Practical answers for factory teams evaluating MachMemo.</h1>
-        </div>
-      </section>
-      <FAQSection />
-      <FinalCTA />
-    </>
+    <section className="section-pad faq-page">
+      <SectionIntro
+        eyebrow="FAQ"
+        title="Everything a plant team asks before the first pilot."
+        copy="Straight answers about setup, integrations, AI confidence, shop-floor usage, and pricing."
+      />
+      <FAQList />
+    </section>
+  );
+}
+
+function FAQList({ limit }: { limit?: number }) {
+  return (
+    <div className="faq-list">
+      {faqItems.slice(0, limit ?? faqItems.length).map((item) => (
+        <details className="faq-item reveal" key={item.q}>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
   );
 }
 
 function ROICalculatorPage() {
+  const [hours, setHours] = useState(28);
+  const [rate, setRate] = useState(950);
+  const [repeat, setRepeat] = useState(34);
+  const monthlyWaste = hours * rate;
+  const annualOpportunity = Math.round(monthlyWaste * 12 * (repeat / 100));
+
   return (
-    <>
-      <section className="page-hero centered">
-        <div className="page-hero-copy reveal">
-          <span className="eyebrow">ROI Calculator</span>
-          <h1>Estimate the value of capturing your machine memory.</h1>
-          <p>
-            The first version is a guided worksheet for downtime, repeated
-            faults, manual search time, and onboarding drag.
-          </p>
+    <section className="section-pad roi-section">
+      <div className="roi-copy reveal">
+        <span className="eyebrow">ROI calculator</span>
+        <h1>Estimate the cost of forgotten machine knowledge.</h1>
+        <p>
+          Use simple assumptions to understand where reusable fixes and faster
+          context can create value.
+        </p>
+      </div>
+      <div className="roi-card reveal">
+        <label>
+          Downtime hours per month
+          <input
+            type="number"
+            value={hours}
+            onChange={(event) => setHours(Number(event.target.value))}
+          />
+        </label>
+        <label>
+          Cost per downtime hour in EUR
+          <input
+            type="number"
+            value={rate}
+            onChange={(event) => setRate(Number(event.target.value))}
+          />
+        </label>
+        <label>
+          Repeat-fault share in percent
+          <input
+            type="number"
+            value={repeat}
+            onChange={(event) => setRepeat(Number(event.target.value))}
+          />
+        </label>
+        <div className="roi-result">
+          <span>Annual repeat-fault opportunity</span>
+          <strong>EUR {annualOpportunity.toLocaleString("en-US")}</strong>
         </div>
-      </section>
-      <section className="section-pad roi-section">
-        {[
-          ["Monthly downtime hours", "36"],
-          ["Average downtime cost", "EUR 1,200 / hour"],
-          ["Repeat-fault share", "28%"],
-          ["Document search time", "18 hours / month"],
-        ].map(([label, value]) => (
-          <div className="roi-card reveal" key={label}>
-            <span>{label}</span>
-            <strong>{value}</strong>
-          </div>
-        ))}
-      </section>
-      <FinalCTA />
-    </>
+      </div>
+    </section>
   );
 }
 
@@ -1588,39 +1726,32 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <Link className="brand" href="/">
+        <Link className="brand" href="/" aria-label="MachMemo home">
           <span className="brand-mark" />
           <span className="brand-word">MachMemo</span>
         </Link>
-        <p>Machine memory for maintenance intelligence.</p>
-        <small>MachMemo Sp. z o.o. - Warsaw, Poland</small>
+        <p>
+          Machine memory for maintenance intelligence. Built in Poland for
+          manufacturing SMEs, machine shops, maintenance teams, and industrial
+          suppliers across Europe.
+        </p>
+        <ContactDetails />
       </div>
       <FooterColumn title="Products" items={products} />
       <FooterColumn title="Solutions" items={solutions} />
       <FooterColumn
         title="Company"
         items={[
-          { title: "About", href: "/about" },
-          { title: "Contact", href: "/contact" },
-          { title: "Security", href: "/security" },
-          { title: "Sign In", href: "/signin" },
+          ...companyLinks,
+          { title: "Pricing", href: "/pricing", description: "", icon: Gauge },
+          {
+            title: "Request Demo",
+            href: "/request-demo",
+            description: "",
+            icon: Mail,
+          },
         ]}
       />
-      <FooterColumn
-        title="Legal"
-        items={[
-          { title: "Privacy", href: "/security" },
-          { title: "Terms", href: "/security" },
-          { title: "GDPR", href: "/security" },
-          { title: "AI & Data", href: "/security" },
-        ]}
-      />
-      <div className="footer-contact">
-        <strong>Contact</strong>
-        <a href="mailto:hello@machmemo.com">hello@machmemo.com</a>
-        <a href="mailto:sales@machmemo.com">sales@machmemo.com</a>
-        <span>+48 22 263 74 18</span>
-      </div>
     </footer>
   );
 }
@@ -1636,9 +1767,9 @@ function FooterColumn({
     <div className="footer-column">
       <strong>{title}</strong>
       {items.map((item) => (
-        <a href={item.href} key={item.href}>
+        <Link key={item.href} href={item.href}>
           {item.title}
-        </a>
+        </Link>
       ))}
     </div>
   );
