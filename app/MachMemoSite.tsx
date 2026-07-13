@@ -522,26 +522,6 @@ export default function MachMemoSite({ page = "home" }: { page?: PageKey }) {
         });
       }
 
-      gsap.fromTo(
-        ".memory-link",
-        { scaleX: 0, autoAlpha: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          autoAlpha: 1,
-          duration: 1,
-          stagger: 0.08,
-          ease: "power3.out",
-        },
-      );
-
-      gsap.to(".graph-core-pulse", {
-        scale: 1.16,
-        opacity: 0,
-        duration: 1.8,
-        repeat: -1,
-        ease: "sine.out",
-      });
-
       gsap.to(".scan-line", {
         xPercent: 115,
         duration: 3.4,
@@ -746,51 +726,6 @@ function HomePage() {
 }
 
 function Hero() {
-  const nodes = [
-    {
-      className: "node-docs",
-      title: "Documents",
-      value: "1,248 files",
-      detail: "SOPs, manuals, drawings",
-      icon: FileText,
-    },
-    {
-      className: "node-faults",
-      title: "Failures",
-      value: "842 cases",
-      detail: "Alarm and event history",
-      icon: AlertTriangle,
-    },
-    {
-      className: "node-signals",
-      title: "Signals",
-      value: "2.4M / day",
-      detail: "SCADA, IoT, trends",
-      icon: Activity,
-    },
-    {
-      className: "node-fixes",
-      title: "Fixes",
-      value: "1,103 answers",
-      detail: "Parts, steps, times",
-      icon: Wrench,
-    },
-    {
-      className: "node-experts",
-      title: "Experts",
-      value: "28 specialists",
-      detail: "Captured know-how",
-      icon: Users,
-    },
-    {
-      className: "node-machines",
-      title: "Machines",
-      value: "156 active",
-      detail: "Lines and components",
-      icon: Factory,
-    },
-  ];
-
   return (
     <section className="hero" aria-label="MachMemo hero">
       <div className="hero-copy">
@@ -824,72 +759,9 @@ function Hero() {
         </div>
       </div>
 
-      <div className="hero-visual-stage" aria-label="Robotic arm activating machine memory graph">
+      <div className="hero-visual-stage" aria-label="Robotic arm activating machine memory">
         <div className="robotic-hero-image" />
         <div className="scan-line" />
-        <div className="graph-board">
-          {[
-            "link-docs",
-            "link-faults",
-            "link-signals",
-            "link-fixes",
-            "link-experts",
-            "link-machines",
-          ].map((item) => (
-            <span className={`memory-link ${item}`} key={item} />
-          ))}
-          <div className="graph-core">
-            <span className="graph-core-pulse" />
-            <span className="core-mark">M</span>
-            <small>Memory graph</small>
-          </div>
-          {nodes.map((node) => {
-            const Icon = node.icon;
-            return (
-              <article className={`memory-node ${node.className}`} key={node.title}>
-                <Icon size={26} />
-                <div>
-                  <strong>{node.title}</strong>
-                  <span>{node.value}</span>
-                  <small>{node.detail}</small>
-                </div>
-              </article>
-            );
-          })}
-          <article className="verified-answer">
-            <div className="answer-top">
-              <span>Active: Pump P-101</span>
-              <strong>Moderate</strong>
-            </div>
-            <span className="verified-line">
-              <ShieldCheck size={15} /> Verified answer
-            </span>
-            <h3>Unusual vibration detected</h3>
-            <p>
-              Most likely cause: loose mounting bolts or bearing play after the
-              last service window.
-            </p>
-            <div className="confidence-track">
-              <span />
-              <span />
-              <span />
-            </div>
-            <ul className="source-list">
-              {[
-                ["WO-2024-0312", "98%", FileText],
-                ["SOP-PMP-07", "96%", ClipboardCheck],
-                ["SCADA trend", "94%", Activity],
-                ["Jan Kowalski note", "93%", Users],
-              ].map(([label, score, Icon]) => (
-                <li key={label as string}>
-                  <Icon size={15} />
-                  {label}
-                  <strong>{score}</strong>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </div>
       </div>
     </section>
   );
