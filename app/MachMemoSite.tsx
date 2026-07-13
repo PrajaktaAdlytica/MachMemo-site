@@ -964,7 +964,14 @@ function CaseStudyCarousel() {
 }
 
 function IntegrationsSection() {
-  const tools = ["Excel", "CMMS", "SAP PM", "PLC", "SCADA", "Sensors"];
+  const tools = [
+    ["Excel", "Files + exports", FileText],
+    ["CMMS", "Work orders", ClipboardCheck],
+    ["SAP PM", "Asset records", Layers3],
+    ["PLC", "Machine events", Cpu],
+    ["SCADA", "Trend history", Activity],
+    ["Sensors", "Live signals", Gauge],
+  ] as const;
 
   return (
     <section className="section-pad integrations-section">
@@ -990,15 +997,31 @@ function IntegrationsSection() {
         </ul>
       </div>
       <div className="integration-board reveal">
-        <div className="integration-core">
-          <PlugZap size={30} />
-          <strong>MachMemo</strong>
+        <div className="integration-board-top">
+          <span>Connect when ready</span>
+          <strong>No rip-and-replace</strong>
         </div>
-        {tools.map((item, index) => (
-          <span className={`integration-pill pill-${index}`} key={item}>
-            {item}
-          </span>
-        ))}
+        <div className="integration-system">
+          <div className="integration-core">
+            <PlugZap size={28} />
+            <strong>MachMemo</strong>
+            <span>Verified memory layer</span>
+          </div>
+          {tools.map(([title, detail, Icon], index) => (
+            <article className={`integration-node node-${index}`} key={title}>
+              <Icon size={20} />
+              <strong>{title}</strong>
+              <span>{detail}</span>
+            </article>
+          ))}
+        </div>
+        <div className="integration-meta">
+          <span><Check size={14} /> 3-6 week pilot</span>
+          <span><ShieldCheck size={14} /> EU access review</span>
+          <Link href="/request-demo">
+            Scope connection plan <ArrowRight size={15} />
+          </Link>
+        </div>
       </div>
     </section>
   );

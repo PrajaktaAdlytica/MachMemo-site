@@ -1400,11 +1400,71 @@ h3 {
 .integration-board {
   position: relative;
   width: min(100%, 600px);
-  min-height: 470px;
-  border: 1px solid var(--color-line);
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(143, 216, 199, 0.18);
   border-radius: var(--radius-md);
-  background: #fff;
-  box-shadow: var(--shadow-soft);
+  padding: 28px;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(143, 216, 199, 0.22), transparent 28%),
+    radial-gradient(circle at 12% 8%, rgba(143, 216, 199, 0.14), transparent 24%),
+    linear-gradient(145deg, #121b20 0%, #0a1115 72%);
+  box-shadow: 0 34px 90px rgba(16, 22, 25, 0.22);
+}
+
+.integration-board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(143, 216, 199, 0.16) 1px, transparent 1.7px),
+    linear-gradient(rgba(143, 216, 199, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 216, 199, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px, 72px 72px, 72px 72px;
+  opacity: 0.72;
+}
+
+.integration-board::after {
+  content: "";
+  position: absolute;
+  inset: 122px 76px 122px;
+  border: 1px solid rgba(143, 216, 199, 0.16);
+  border-radius: 34px;
+  background:
+    linear-gradient(90deg, transparent 0 16%, rgba(143, 216, 199, 0.36) 16% 16.6%, transparent 16.6% 34%, rgba(143, 216, 199, 0.28) 34% 34.6%, transparent 34.6% 65%, rgba(143, 216, 199, 0.28) 65% 65.6%, transparent 65.6% 84%, rgba(143, 216, 199, 0.36) 84% 84.6%, transparent 84.6%),
+    linear-gradient(180deg, transparent 0 12%, rgba(143, 216, 199, 0.24) 12% 12.7%, transparent 12.7% 41%, rgba(143, 216, 199, 0.28) 41% 41.7%, transparent 41.7% 59%, rgba(143, 216, 199, 0.28) 59% 59.7%, transparent 59.7% 88%, rgba(143, 216, 199, 0.24) 88% 88.7%, transparent 88.7%);
+  opacity: 0.55;
+}
+
+.integration-board > * {
+  position: relative;
+  z-index: 1;
+}
+
+.integration-board-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid rgba(143, 216, 199, 0.16);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(236, 246, 242, 0.58);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.integration-board-top strong {
+  color: var(--color-mint);
+  font-size: 0.78rem;
+}
+
+.integration-system {
+  position: relative;
+  min-height: 330px;
+  margin: 20px 0 18px;
 }
 
 .integration-core {
@@ -1412,13 +1472,18 @@ h3 {
   top: 50%;
   left: 50%;
   display: grid;
-  width: 150px;
-  height: 150px;
+  width: 154px;
+  min-height: 134px;
   place-items: center;
-  border: 1px solid rgba(31, 138, 112, 0.32);
-  border-radius: var(--radius-md);
-  background: var(--color-ink);
+  border: 1px solid rgba(143, 216, 199, 0.38);
+  border-radius: 24px;
+  padding: 18px;
+  background: rgba(9, 18, 22, 0.88);
   color: var(--color-mint);
+  text-align: center;
+  box-shadow:
+    0 0 0 8px rgba(143, 216, 199, 0.035),
+    0 0 52px rgba(143, 216, 199, 0.2);
   transform: translate(-50%, -50%);
 }
 
@@ -1426,46 +1491,120 @@ h3 {
   color: #fff;
 }
 
-.integration-pill {
+.integration-core span {
+  color: rgba(236, 246, 242, 0.56);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.integration-node {
   position: absolute;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-pill);
-  padding: 9px 14px;
-  background: rgba(255, 255, 255, 0.88);
-  color: var(--color-graphite);
-  font-weight: 600;
-  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 3px 10px;
+  min-width: 164px;
+  border: 1px solid rgba(143, 216, 199, 0.18);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.075);
+  color: rgba(236, 246, 242, 0.78);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(14px);
 }
 
-.pill-0 {
-  top: 72px;
-  left: 66px;
+.integration-node svg {
+  grid-row: span 2;
+  color: var(--color-mint);
 }
 
-.pill-1 {
-  top: 62px;
-  right: 70px;
+.integration-node strong {
+  color: #fff;
+  line-height: 1.1;
 }
 
-.pill-2 {
-  left: 58px;
-  bottom: 100px;
+.integration-node span {
+  color: rgba(236, 246, 242, 0.58);
+  font-size: 0.78rem;
 }
 
-.pill-3 {
-  right: 70px;
-  bottom: 102px;
+.node-0 {
+  top: 0;
+  left: 4px;
 }
 
-.pill-4 {
-  bottom: 42px;
-  left: 50%;
-  transform: translateX(-50%);
+.node-1 {
+  top: 0;
+  right: 4px;
 }
 
-.pill-5 {
+.node-2 {
   top: 50%;
-  right: 32px;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.node-3 {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.node-4 {
+  left: 18%;
+  bottom: 0;
+}
+
+.node-5 {
+  right: 18%;
+  bottom: 0;
+}
+
+.integration-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  overflow: hidden;
+  border: 1px solid rgba(143, 216, 199, 0.2);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.integration-meta span,
+.integration-meta a {
+  display: flex;
+  min-height: 58px;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(143, 216, 199, 0.16);
+  padding: 12px;
+  color: rgba(236, 246, 242, 0.74);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.integration-meta svg {
+  flex: 0 0 auto;
+  color: var(--color-mint);
+}
+
+.integration-meta a {
+  border-right: 0;
+  color: #fff;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.integration-meta a:hover {
+  background: var(--color-mint);
+  color: var(--color-ink);
+}
+
+.integration-meta a:hover svg {
+  color: var(--color-ink);
 }
 
 .stats-section {
@@ -2756,6 +2895,50 @@ h3 {
     bottom: 32px;
     left: 16%;
     opacity: 0.42;
+  }
+
+  .integration-board {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .integration-board::after {
+    display: none;
+  }
+
+  .integration-board-top,
+  .integration-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .integration-system {
+    display: grid;
+    min-height: auto;
+    gap: 10px;
+  }
+
+  .integration-core,
+  .integration-node {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    transform: none;
+  }
+
+  .integration-core {
+    min-height: 120px;
+  }
+
+  .integration-meta span,
+  .integration-meta a {
+    justify-content: flex-start;
+    border-right: 0;
+    border-bottom: 1px solid rgba(143, 216, 199, 0.16);
+    text-align: left;
+  }
+
+  .integration-meta a {
+    border-bottom: 0;
   }
 
   .workflow-strip,
