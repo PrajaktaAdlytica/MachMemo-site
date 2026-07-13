@@ -2026,11 +2026,11 @@ h3 {
 
 .demo-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(620px, 1.12fr);
-  gap: 42px;
+  grid-template-columns: 1fr;
+  justify-items: center;
   align-items: start;
-  min-height: 820px;
-  padding-top: 148px;
+  min-height: 760px;
+  padding-top: 140px;
   background:
     radial-gradient(circle at 18% 20%, rgba(143, 216, 199, 0.34), transparent 30%),
     radial-gradient(circle at 88% 78%, rgba(246, 180, 84, 0.16), transparent 26%),
@@ -2092,8 +2092,8 @@ h3 {
 .demo-conversion {
   display: grid;
   grid-template-columns: minmax(320px, 0.76fr) minmax(0, 1fr);
-  gap: 18px;
-  width: min(100%, 880px);
+  gap: 20px;
+  width: min(100%, 1080px);
 }
 
 .demo-conversion .lead-form {

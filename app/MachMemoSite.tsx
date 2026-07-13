@@ -1328,26 +1328,6 @@ function DemoPage() {
 
   return (
     <section className="section-pad demo-section">
-      <div className="demo-copy reveal">
-        <span className="eyebrow">Request demo</span>
-        <h1>Show us the machines where knowledge gets lost.</h1>
-        <p>
-          We will map a pilot around your top assets, recurring faults,
-          documents, and team knowledge. No generic deck first.
-        </p>
-        <div className="demo-checks">
-          {[
-            "30-minute discovery call",
-            "Pilot scope for 5-15 critical machines",
-            "EU data and access review",
-          ].map((item) => (
-            <span key={item}>
-              <Check size={15} />
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
       <div className="demo-conversion reveal">
         <LeadForm title="Book a MachMemo demo" demo />
         <aside className="demo-diagram" aria-label="What happens in the MachMemo demo">
