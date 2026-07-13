@@ -1106,6 +1106,24 @@ h3 {
   padding-top: 18px;
 }
 
+.product-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--color-circuit-dark);
+  font-size: 0.96rem;
+  font-weight: 750;
+}
+
+.product-card-link svg {
+  transition: transform 180ms ease;
+}
+
+.product-card:hover .product-card-link svg {
+  transform: translateX(4px);
+}
+
 .product-footer strong {
   color: var(--color-circuit-dark);
   font-family: var(--font-mono);
@@ -1198,11 +1216,7 @@ h3 {
 }
 
 .memory-layer {
-  background:
-    linear-gradient(rgba(16, 22, 25, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 22, 25, 0.035) 1px, transparent 1px),
-    var(--color-paper);
-  background-size: 56px 56px, 56px 56px, cover;
+  background: var(--color-paper);
 }
 
 .memory-inputs {
@@ -1462,11 +1476,7 @@ h3 {
   min-height: 470px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  background:
-    linear-gradient(rgba(16, 22, 25, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 22, 25, 0.04) 1px, transparent 1px),
-    #fff;
-  background-size: 44px 44px;
+  background: #fff;
   box-shadow: var(--shadow-soft);
 }
 

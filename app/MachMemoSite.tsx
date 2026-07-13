@@ -184,39 +184,39 @@ const companyLinks: MenuItem[] = [
 
 const caseStudies = [
   {
-    label: "Legnica machine shop",
+    label: "CNC shop pilot, Legnica",
     industry: "CNC machining",
     metric: "57%",
-    title: "faster repeat alarm resolution",
+    title: "faster repeat alarm triage",
     detail:
-      "Spindle vibration checks, bearing preload notes, coolant residue patterns, and supplier instructions became a reusable fix path.",
+      "Mapped spindle alarms, setup notes, and prior bearing repairs to each CNC asset so technicians could reuse the proven diagnostic path.",
     tone: "mint",
   },
   {
-    label: "Wroclaw packaging line",
+    label: "Packaging line pilot, Wroclaw",
     industry: "Packaging",
     metric: "-320h",
-    title: "downtime risk avoided yearly",
+    title: "downtime risk avoided annually",
     detail:
-      "Shift notes, fault codes, and maintenance history were unified into a verified memory for recurring conveyor stops.",
+      "Unified shift notes, fault codes, and PM history for recurring conveyor stops, giving the next shift a verified starting point.",
     tone: "amber",
   },
   {
-    label: "Katowice service team",
+    label: "Supplier service desk, Katowice",
     industry: "Industrial supplier",
     metric: "92%",
-    title: "answers with cited sources",
+    title: "source-backed support answers",
     detail:
-      "Field service records and manuals became a support layer for faster customer troubleshooting and better product feedback.",
+      "Connected installation manuals, field reports, and service fixes so support engineers could answer with citations instead of tribal recall.",
     tone: "burgundy",
   },
   {
-    label: "Poznan plastics site",
+    label: "Plastics plant rollout, Poznan",
     industry: "Manufacturing SME",
     metric: "24/7",
-    title: "machine memory access",
+    title: "access to machine know-how",
     detail:
-      "Maintenance teams stopped depending on one expert by capturing procedures, machine quirks, and prior fixes.",
+      "Captured technician procedures and machine quirks before senior knowledge walked out the door, then reused them in fix cards.",
     tone: "steel",
   },
 ];
@@ -802,6 +802,10 @@ function ProductArchitecture() {
                 <strong>{product.metric}</strong>
                 <span>{product.signal}</span>
               </div>
+              <span className="product-card-link">
+                Explore product
+                <ArrowRight size={17} />
+              </span>
             </Link>
           );
         })}
@@ -923,8 +927,12 @@ function CaseStudyCarousel() {
     <section className="section-pad cases-section">
       <div className="split-heading reveal">
         <div>
-          <span className="eyebrow">Field proof</span>
-          <h2>Premium case cards without pretending every pilot is a logo wall.</h2>
+          <span className="eyebrow">Pilot proof</span>
+          <h2>Where machine memory starts paying back.</h2>
+          <p>
+            Representative Polish and EU maintenance scenarios for repeat
+            faults, shift handovers, service support, and knowledge capture.
+          </p>
         </div>
         <div className="carousel-buttons">
           <button type="button" onClick={() => move(-1)} aria-label="Previous case">
