@@ -422,10 +422,14 @@ h3 {
 
 .hero {
   position: relative;
-  min-height: 1040px;
-  padding: 146px 32px 54px;
+  display: grid;
+  grid-template-columns: minmax(430px, 0.72fr) minmax(760px, 1.28fr);
+  gap: 44px;
+  align-items: center;
+  min-height: 920px;
+  padding: 146px 56px 178px;
   background:
-    radial-gradient(circle at 50% 35%, rgba(143, 216, 199, 0.18), transparent 30%),
+    radial-gradient(circle at 72% 44%, rgba(143, 216, 199, 0.2), transparent 34%),
     linear-gradient(rgba(16, 22, 25, 0.032) 1px, transparent 1px),
     linear-gradient(90deg, rgba(16, 22, 25, 0.032) 1px, transparent 1px),
     linear-gradient(180deg, #fbfcf8 0%, #edf4ef 100%);
@@ -435,23 +439,23 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 3;
-  max-width: 990px;
-  margin: 0 auto;
-  text-align: center;
+  max-width: 640px;
+  margin: 0 0 0 auto;
+  text-align: left;
 }
 
 .hero-copy h1 {
-  max-width: 1000px;
-  margin-right: auto;
-  margin-left: auto;
-  font-size: clamp(3.8rem, 7.1vw, 6.8rem);
+  max-width: 660px;
+  margin-right: 0;
+  margin-left: 0;
+  font-size: clamp(3.65rem, 5.8vw, 6.05rem);
   line-height: 0.98;
 }
 
 .hero-subcopy {
-  max-width: 760px;
-  margin-right: auto;
-  margin-left: auto;
+  max-width: 600px;
+  margin-right: 0;
+  margin-left: 0;
   color: var(--color-graphite);
   font-size: 1.12rem;
   line-height: 1.65;
@@ -460,7 +464,7 @@ h3 {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 13px;
   margin-top: 32px;
 }
@@ -468,7 +472,7 @@ h3 {
 .hero-proof {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 9px;
   margin-top: 28px;
 }
@@ -491,19 +495,20 @@ h3 {
 }
 
 .hero-visual-stage {
-  width: min(100%, 1420px);
-  margin: 48px auto 0;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
 }
 
 .graph-board {
   position: relative;
   width: 100%;
-  min-height: 650px;
+  min-height: 610px;
   border: 1px solid rgba(186, 198, 192, 0.86);
   border-radius: var(--radius-md);
   background:
-    radial-gradient(circle at 50% 47%, rgba(31, 138, 112, 0.1), transparent 28%),
-    radial-gradient(circle at 15% 35%, rgba(143, 216, 199, 0.16), transparent 34%),
+    radial-gradient(circle at 45% 48%, rgba(31, 138, 112, 0.12), transparent 30%),
+    radial-gradient(circle at 12% 32%, rgba(143, 216, 199, 0.16), transparent 38%),
     linear-gradient(rgba(16, 22, 25, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(16, 22, 25, 0.04) 1px, transparent 1px),
     rgba(255, 255, 255, 0.9);
@@ -530,51 +535,51 @@ h3 {
 }
 
 .link-docs {
-  top: 212px;
-  left: 36%;
-  width: 180px;
+  top: 204px;
+  left: 29%;
+  width: 178px;
   transform: rotate(38deg);
 }
 
 .link-faults {
-  top: 194px;
-  left: 49%;
+  top: 190px;
+  left: 45%;
   width: 150px;
   transform: rotate(-26deg);
 }
 
 .link-signals {
-  top: 228px;
-  left: 58%;
-  width: 240px;
+  top: 226px;
+  left: 55%;
+  width: 196px;
   transform: rotate(28deg);
 }
 
 .link-fixes {
-  top: 370px;
-  left: 31%;
-  width: 230px;
+  top: 358px;
+  left: 22%;
+  width: 222px;
   transform: rotate(-28deg);
 }
 
 .link-machines {
-  top: 430px;
-  left: 44%;
+  top: 416px;
+  left: 37%;
   width: 160px;
   transform: rotate(90deg);
 }
 
 .link-experts {
-  top: 348px;
-  left: 55%;
+  top: 342px;
+  left: 51%;
   width: 160px;
   transform: rotate(-14deg);
 }
 
 .graph-core {
   position: absolute;
-  top: 286px;
-  left: 50%;
+  top: 278px;
+  left: 43%;
   z-index: 2;
   display: grid;
   width: 124px;
@@ -669,39 +674,39 @@ h3 {
 
 .node-docs {
   top: 78px;
-  left: 35%;
+  left: 25%;
 }
 
 .node-faults {
   top: 74px;
-  left: 50%;
+  left: 44%;
 }
 
 .node-signals {
-  top: 106px;
-  left: 65%;
+  top: 108px;
+  left: 63%;
 }
 
 .node-fixes {
-  top: 336px;
-  left: 27%;
+  top: 332px;
+  left: 15%;
 }
 
 .node-machines {
-  bottom: 56px;
-  left: 40%;
+  bottom: 48px;
+  left: 34%;
 }
 
 .node-experts {
-  top: 330px;
-  left: 59%;
+  top: 326px;
+  left: 54%;
 }
 
 .verified-answer {
   position: absolute;
-  right: 38px;
-  bottom: 44px;
-  width: 360px;
+  right: 26px;
+  bottom: 34px;
+  width: 340px;
   border: 1px solid rgba(201, 121, 18, 0.52);
   border-radius: var(--radius-md);
   padding: 20px;
@@ -806,7 +811,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   width: min(100% - 64px, 1320px);
-  margin: -18px auto 0;
+  margin: -126px auto 0;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.76);
