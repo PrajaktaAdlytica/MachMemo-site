@@ -1296,6 +1296,13 @@ function ContactPage() {
 }
 
 function DemoPage() {
+  const demoSteps = [
+    ["01", "Map the plant reality", "Assets, failure history, documents, CMMS exports, and current team habits.", Factory],
+    ["02", "Find the pilot shape", "We identify 5-15 machines where memory reuse can prove value quickly.", Search],
+    ["03", "Check data posture", "EU hosting, access roles, source attribution, and rollout constraints.", ShieldCheck],
+    ["04", "Leave with a plan", "A practical pilot scope, owners, success metrics, and next actions.", ClipboardCheck],
+  ] as const;
+
   return (
     <section className="section-pad demo-section">
       <div className="demo-copy reveal">
@@ -1318,7 +1325,38 @@ function DemoPage() {
           ))}
         </div>
       </div>
-      <LeadForm title="Book a MachMemo demo" demo />
+      <div className="demo-conversion reveal">
+        <LeadForm title="Book a MachMemo demo" demo />
+        <aside className="demo-diagram" aria-label="What happens in the MachMemo demo">
+          <div className="demo-diagram-head">
+            <span className="eyebrow">What you get</span>
+            <h2>A demo built around your maintenance flow.</h2>
+            <p>
+              We use your real context to show where MachMemo Docs, Fix, and
+              Health would start creating reusable intelligence.
+            </p>
+          </div>
+          <div className="demo-step-list">
+            {demoSteps.map(([number, title, copy, Icon]) => (
+              <div className="demo-step" key={title}>
+                <span>{number}</span>
+                <Icon size={22} />
+                <div>
+                  <strong>{title}</strong>
+                  <p>{copy}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="demo-output">
+            <Layers3 size={22} />
+            <div>
+              <strong>Pilot blueprint</strong>
+              <span>Scope, machine list, risk controls, and success metrics</span>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
   );
 }
@@ -1396,43 +1434,81 @@ function ContactDetails() {
 function SignInPage() {
   return (
     <section className="signin-page">
-      <div className="signin-panel reveal">
-        <Link className="brand" href="/" aria-label="MachMemo home">
-          <span className="brand-mark" />
-          <span className="brand-word">MachMemo</span>
-        </Link>
-        <h1>Sign in to machine memory.</h1>
-        <p>Access docs, fix paths, health signals, and source-backed answers.</p>
-        <form>
-          <label>
-            Email
-            <input type="email" placeholder="technik@zaklad.pl" />
-          </label>
-          <label>
-            Password
-            <input type="password" placeholder="••••••••" />
-          </label>
-          <button className="btn btn-primary" type="button">
-            Sign In
-          </button>
-        </form>
+      <div className="signin-shell reveal">
+        <aside className="signin-visual">
+          <Link className="brand signin-brand" href="/" aria-label="MachMemo home">
+            <span className="brand-mark" />
+            <span className="brand-word">MachMemo</span>
+          </Link>
+          <div className="signin-visual-copy">
+            <span className="eyebrow">Plant context</span>
+            <h2>Return to the machine memory layer.</h2>
+            <p>
+              Verified fixes, live machine signals, and expert notes stay tied
+              to the asset where your team needs them.
+            </p>
+          </div>
+          <div className="signin-memory-board" aria-hidden="true">
+            <div className="signin-core">
+              <span>M</span>
+              <small>Memory graph</small>
+            </div>
+            <div className="signin-node node-docs">
+              <FileText size={18} />
+              <strong>Docs</strong>
+              <span>1,248 files</span>
+            </div>
+            <div className="signin-node node-fixes">
+              <Wrench size={18} />
+              <strong>Fixes</strong>
+              <span>1,103 answers</span>
+            </div>
+            <div className="signin-node node-health">
+              <Activity size={18} />
+              <strong>Health</strong>
+              <span>74 score</span>
+            </div>
+          </div>
+          <div className="signin-status-row">
+            <span><Check size={14} /> EU hosting option</span>
+            <span><Check size={14} /> Source-backed</span>
+          </div>
+        </aside>
+        <div className="signin-panel">
+          <div className="signin-form-head">
+            <span className="eyebrow">Secure access</span>
+            <h1>Welcome back.</h1>
+            <p>Sign in to MachMemo to continue work on your plant memory.</p>
+          </div>
+          <form>
+            <label>
+              Work email
+              <input type="email" placeholder="technik@zaklad.pl" />
+            </label>
+            <label>
+              Password
+              <input type="password" placeholder="••••••••" />
+            </label>
+            <div className="signin-form-row">
+              <label className="signin-check">
+                <input type="checkbox" />
+                Remember me
+              </label>
+              <Link href="/contact">Forgot password?</Link>
+            </div>
+            <button className="btn btn-primary" type="button">
+              Sign in <ArrowRight size={16} />
+            </button>
+          </form>
+          <div className="signin-divider"><span>or</span></div>
+          <Link className="signin-secondary" href="/request-demo">
+            Request pilot access
+          </Link>
+          <p className="signin-footnote">
+            New plant team? <Link href="/request-demo">Book a demo</Link>
+          </p>
+        </div>
       </div>
-      <aside className="signin-aside reveal">
-        <span className="eyebrow">Plant context</span>
-        <h2>Line 3 has three open memory updates.</h2>
-        <div className="signin-update">
-          <strong>Verified fix saved</strong>
-          <span>Pompa P-101 vibration after service window</span>
-        </div>
-        <div className="signin-update">
-          <strong>Health score changed</strong>
-          <span>Extruder-310 moved from 82 to 74</span>
-        </div>
-        <div className="signin-update">
-          <strong>Document linked</strong>
-          <span>SOP-PMP-07 attached to recurring failure mode</span>
-        </div>
-      </aside>
     </section>
   );
 }
