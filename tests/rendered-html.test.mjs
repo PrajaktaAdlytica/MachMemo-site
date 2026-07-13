@@ -47,7 +47,7 @@ test("finished site files do not reference starter preview artifacts", async () 
 
   assert.match(page, /<MachMemoSite page="home" \/>/);
   assert.match(layout, /MachMemo - Machine memory/);
-  assert.match(site, /machmemo-dark-hero-reference\.png/);
+  assert.match(site, /machmemo-dark-hero-reference\.jpg/);
   assert.match(css, /--color-circuit:\s*#1f8a70/i);
   assert.doesNotMatch(packageJson, /site-creator-vinext-starter|react-loading-skeleton/);
   assert.doesNotMatch(

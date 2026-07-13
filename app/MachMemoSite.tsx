@@ -3,7 +3,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Activity,
@@ -724,13 +723,15 @@ function HomePage() {
 function Hero() {
   return (
     <section className="hero hero-reference-mode" aria-label="MachMemo hero">
-      <Image
-        src="/machmemo-dark-hero-reference.png"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/machmemo-dark-hero-reference.jpg"
         alt="MachMemo dark hero showing machine memory graph, verified maintenance answer, workflow cards, and Polish/EU manufacturing proof."
         className="hero-reference-image"
-        width={2261}
-        height={1508}
-        priority
+        width={1800}
+        height={1200}
+        decoding="async"
+        fetchPriority="high"
       />
       <div className="hero-hotspots" aria-label="Hero actions">
         <Link className="hero-hotspot hero-hotspot-demo" href="/request-demo">
