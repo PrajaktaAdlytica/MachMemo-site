@@ -240,22 +240,24 @@ h3 {
 }
 
 .site-header {
-  position: sticky;
-  top: 18px;
-  z-index: 60;
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 100;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 28px;
   width: min(calc(100% - 48px), 1380px);
   min-height: 66px;
-  margin: 18px auto -84px;
+  margin: 0;
   border: 1px solid rgba(143, 216, 199, 0.16);
   border-radius: 18px;
   padding: 10px 14px 10px 18px;
   background: rgba(18, 27, 32, 0.78);
   box-shadow: 0 18px 55px rgba(0, 0, 0, 0.24);
   backdrop-filter: blur(22px);
+  transform: translateX(-50%);
 }
 
 .home-shell .site-header {
@@ -2822,7 +2824,6 @@ h3 {
   .site-header {
     width: min(calc(100% - 24px), 1380px);
     top: 12px;
-    margin-top: 12px;
   }
 
   .hero,
