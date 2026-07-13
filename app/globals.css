@@ -731,6 +731,166 @@ h3 {
   box-shadow: var(--shadow-hairline);
 }
 
+.testimonial-card,
+.pricing-card,
+.feature-card,
+.related-card,
+.memory-input,
+.story-card,
+.roi-card,
+.contact-details,
+.detail-panel,
+.signin-aside,
+.stat-card,
+.faq-item {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease;
+}
+
+.testimonial-card > *,
+.pricing-card > *,
+.feature-card > *,
+.related-card > *,
+.memory-input > *,
+.story-card > *,
+.roi-card > *,
+.contact-details > *,
+.detail-panel > *,
+.signin-aside > *,
+.stat-card > *,
+.faq-item > * {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-card::before,
+.pricing-card::before,
+.feature-card::before,
+.related-card::before,
+.memory-input::before,
+.story-card::before,
+.roi-card::before,
+.contact-details::before,
+.detail-panel::before,
+.signin-aside::before,
+.stat-card::before,
+.faq-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle, rgba(143, 216, 199, 0.22) 1px, transparent 1.7px),
+    radial-gradient(circle at 18% 12%, rgba(143, 216, 199, 0.22), transparent 28%),
+    linear-gradient(145deg, #111b20 0%, #0b1216 76%);
+  background-size: 18px 18px, auto, auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.testimonial-card:hover,
+.pricing-card:hover,
+.feature-card:hover,
+.related-card:hover,
+.memory-input:hover,
+.story-card:hover,
+.roi-card:hover,
+.contact-details:hover,
+.detail-panel:hover,
+.signin-aside:hover,
+.stat-card:hover,
+.faq-item:hover {
+  border-color: rgba(143, 216, 199, 0.42);
+  color: #f4fffb;
+  box-shadow: 0 24px 70px rgba(16, 22, 25, 0.2);
+  transform: translateY(-5px);
+}
+
+.testimonial-card:hover::before,
+.pricing-card:hover::before,
+.feature-card:hover::before,
+.related-card:hover::before,
+.memory-input:hover::before,
+.story-card:hover::before,
+.roi-card:hover::before,
+.contact-details:hover::before,
+.detail-panel:hover::before,
+.signin-aside:hover::before,
+.stat-card:hover::before,
+.faq-item:hover::before {
+  opacity: 1;
+}
+
+.testimonial-card:hover p,
+.testimonial-card:hover span,
+.pricing-card:hover p,
+.pricing-card:hover li,
+.pricing-card:hover .plan-period,
+.feature-card:hover p,
+.related-card:hover p,
+.memory-input:hover span,
+.story-card:hover p,
+.roi-card:hover p,
+.roi-card:hover label,
+.contact-details:hover p,
+.contact-details:hover span,
+.contact-details:hover a,
+.detail-panel:hover p,
+.detail-panel:hover .detail-flow span,
+.signin-aside:hover p,
+.signin-aside:hover span,
+.stat-card:hover span,
+.faq-item:hover p {
+  color: rgba(236, 246, 242, 0.72);
+}
+
+.testimonial-card:hover strong,
+.pricing-card:hover h3,
+.pricing-card:hover .plan-price,
+.feature-card:hover h3,
+.related-card:hover h3,
+.memory-input:hover h3,
+.memory-input:hover strong,
+.story-card:hover h3,
+.contact-details:hover h1,
+.contact-details:hover h2,
+.detail-panel:hover h3,
+.signin-aside:hover h2,
+.stat-card:hover strong,
+.faq-item:hover summary {
+  color: #f4fffb;
+}
+
+.testimonial-card:hover svg,
+.pricing-card:hover svg,
+.feature-card:hover svg,
+.related-card:hover svg,
+.memory-input:hover svg,
+.story-card:hover svg,
+.contact-details:hover svg,
+.detail-panel:hover svg,
+.signin-aside:hover svg,
+.faq-item:hover svg {
+  color: var(--color-mint);
+}
+
+.pricing-card:hover .plan-badge,
+.detail-panel:hover .detail-flow i {
+  background: rgba(143, 216, 199, 0.13);
+  color: var(--color-mint);
+}
+
+.pricing-card:hover .btn-primary {
+  background: var(--color-mint);
+  color: var(--color-ink);
+}
+
 .product-card {
   position: relative;
   display: flex;
