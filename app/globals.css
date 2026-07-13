@@ -423,11 +423,12 @@ h3 {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(420px, 0.66fr) minmax(680px, 1.05fr);
-  gap: 28px;
+  grid-template-columns: minmax(420px, 560px) minmax(640px, 860px);
+  justify-content: center;
+  gap: 54px;
   align-items: center;
-  min-height: 920px;
-  padding: 146px 70px 178px;
+  min-height: 900px;
+  padding: 142px 56px 166px;
   background:
     radial-gradient(circle at 72% 44%, rgba(143, 216, 199, 0.2), transparent 34%),
     linear-gradient(rgba(16, 22, 25, 0.032) 1px, transparent 1px),
@@ -439,21 +440,21 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 3;
-  max-width: 640px;
+  max-width: 560px;
   margin: 0;
   text-align: left;
 }
 
 .hero-copy h1 {
-  max-width: 660px;
+  max-width: 560px;
   margin-right: 0;
   margin-left: 0;
-  font-size: clamp(3.65rem, 5.8vw, 6.05rem);
-  line-height: 0.98;
+  font-size: clamp(3.55rem, 4.7vw, 5.15rem);
+  line-height: 1;
 }
 
 .hero-subcopy {
-  max-width: 600px;
+  max-width: 560px;
   margin-right: 0;
   margin-left: 0;
   color: var(--color-graphite);
@@ -503,7 +504,8 @@ h3 {
 .graph-board {
   position: relative;
   width: 100%;
-  min-height: 590px;
+  max-width: 860px;
+  min-height: 570px;
   border: 0;
   border-radius: 0;
   background:
@@ -518,7 +520,7 @@ h3 {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -15%;
+  left: -8%;
   width: 160px;
   background: linear-gradient(90deg, transparent, rgba(143, 216, 199, 0.28), transparent);
   pointer-events: none;
@@ -532,55 +534,55 @@ h3 {
 }
 
 .link-docs {
-  top: 188px;
-  left: 25%;
-  width: 156px;
+  top: 182px;
+  left: 22%;
+  width: 148px;
   transform: rotate(38deg);
 }
 
 .link-faults {
-  top: 180px;
-  left: 43%;
-  width: 140px;
+  top: 176px;
+  left: 40%;
+  width: 132px;
   transform: rotate(-26deg);
 }
 
 .link-signals {
-  top: 205px;
-  left: 52%;
-  width: 188px;
+  top: 200px;
+  left: 49%;
+  width: 170px;
   transform: rotate(28deg);
 }
 
 .link-fixes {
-  top: 330px;
-  left: 20%;
-  width: 196px;
+  top: 318px;
+  left: 18%;
+  width: 178px;
   transform: rotate(-28deg);
 }
 
 .link-machines {
-  top: 392px;
-  left: 37%;
-  width: 142px;
+  top: 382px;
+  left: 35%;
+  width: 130px;
   transform: rotate(90deg);
 }
 
 .link-experts {
-  top: 315px;
-  left: 48%;
-  width: 148px;
+  top: 308px;
+  left: 45%;
+  width: 132px;
   transform: rotate(-14deg);
 }
 
 .graph-core {
   position: absolute;
-  top: 250px;
-  left: 43%;
+  top: 246px;
+  left: 40%;
   z-index: 2;
   display: grid;
-  width: 124px;
-  height: 124px;
+  width: 116px;
+  height: 116px;
   place-items: center;
   border: 1px solid rgba(31, 138, 112, 0.36);
   border-radius: 26px;
@@ -595,14 +597,14 @@ h3 {
 .graph-core::after {
   content: "";
   position: absolute;
-  inset: -64px;
+  inset: -56px;
   border: 1px solid rgba(31, 138, 112, 0.12);
   border-radius: 50%;
   pointer-events: none;
 }
 
 .graph-core::after {
-  inset: -118px;
+  inset: -106px;
   border-style: dashed;
   opacity: 0.55;
 }
@@ -617,7 +619,7 @@ h3 {
 
 .core-mark {
   color: var(--color-circuit-dark);
-  font-size: 2.8rem;
+  font-size: 2.55rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -636,7 +638,7 @@ h3 {
   display: grid;
   grid-template-columns: 32px 1fr;
   gap: 9px;
-  width: 196px;
+  width: 184px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   padding: 14px;
@@ -657,7 +659,7 @@ h3 {
 
 .memory-node span {
   color: var(--color-steel);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
 }
 
 .memory-node small {
@@ -666,49 +668,49 @@ h3 {
   padding: 5px 8px;
   background: var(--color-fog);
   color: var(--color-steel);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
 }
 
 .node-docs {
-  top: 62px;
-  left: 23%;
+  top: 70px;
+  left: 20%;
 }
 
 .node-faults {
-  top: 58px;
-  left: 43%;
+  top: 62px;
+  left: 39%;
 }
 
 .node-signals {
-  top: 88px;
-  left: 64%;
+  top: 94px;
+  left: 60%;
 }
 
 .node-fixes {
-  top: 300px;
-  left: 15%;
+  top: 292px;
+  left: 13%;
 }
 
 .node-machines {
-  bottom: 34px;
-  left: 33%;
+  bottom: 36px;
+  left: 30%;
 }
 
 .node-experts {
-  top: 302px;
-  left: 50%;
+  top: 300px;
+  left: 45%;
 }
 
 .verified-answer {
   position: absolute;
   z-index: 3;
-  top: 250px;
+  top: 254px;
   right: 0;
   bottom: auto;
-  width: 370px;
+  width: 330px;
   border: 1px solid rgba(201, 121, 18, 0.52);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 18px;
   background: #fffaf0;
   box-shadow: 0 18px 45px rgba(201, 121, 18, 0.14);
 }
@@ -720,7 +722,7 @@ h3 {
   margin-bottom: 14px;
   color: var(--color-amber);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.68rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -731,12 +733,13 @@ h3 {
 
 .verified-answer h3 {
   margin-bottom: 8px;
+  font-size: 1.22rem;
 }
 
 .verified-answer p {
   margin-bottom: 14px;
   color: var(--color-graphite);
-  font-size: 0.94rem;
+  font-size: 0.86rem;
 }
 
 .confidence-track {
