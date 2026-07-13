@@ -1103,10 +1103,10 @@ function PricingPreview() {
         <div>
           <span className="eyebrow">Pricing</span>
           <h2>Start small, prove value, expand machine by machine.</h2>
+          <Link className="btn btn-secondary pricing-heading-link" href="/pricing">
+            View Pricing <ArrowRight size={16} />
+          </Link>
         </div>
-        <Link className="btn btn-secondary" href="/pricing">
-          View pricing <ArrowRight size={16} />
-        </Link>
       </div>
       <PricingCards compact />
     </section>
@@ -1452,6 +1452,9 @@ function SignInPage() {
             </p>
           </div>
           <div className="signin-memory-board" aria-hidden="true">
+            <div className="signin-path path-docs" />
+            <div className="signin-path path-fixes" />
+            <div className="signin-path path-health" />
             <div className="signin-core">
               <span>M</span>
               <small>Memory graph</small>

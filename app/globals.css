@@ -1746,6 +1746,13 @@ h3 {
   background: var(--color-paper);
 }
 
+.pricing-heading-link {
+  width: max-content;
+  min-height: 48px;
+  margin-top: 28px;
+  white-space: nowrap;
+}
+
 .pricing-card {
   display: flex;
   min-height: 520px;
@@ -2305,7 +2312,7 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  padding: 34px;
+  padding: 42px;
   background:
     radial-gradient(circle at 32% 28%, rgba(143, 216, 199, 0.36), transparent 25%),
     linear-gradient(145deg, #111b20, #0a1115 74%);
@@ -2331,7 +2338,7 @@ h3 {
 }
 
 .signin-visual-copy {
-  max-width: 500px;
+  max-width: 460px;
 }
 
 .signin-visual-copy .eyebrow {
@@ -2340,19 +2347,23 @@ h3 {
 
 .signin-visual-copy h2 {
   color: #fff;
-  font-size: clamp(2.4rem, 4vw, 4.35rem);
-  line-height: 0.98;
+  font-size: clamp(2.1rem, 3.3vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.05;
 }
 
 .signin-visual-copy p {
   color: rgba(236, 246, 242, 0.72);
   font-size: 1.02rem;
+  line-height: 1.58;
 }
 
 .signin-memory-board {
   position: relative;
-  min-height: 295px;
-  margin: 28px 0;
+  display: grid;
+  min-height: 320px;
+  margin: 32px 0 24px;
+  place-items: center;
 }
 
 .signin-core,
@@ -2368,17 +2379,17 @@ h3 {
   left: 50%;
   top: 50%;
   display: grid;
-  width: 128px;
-  height: 128px;
+  width: 116px;
+  height: 116px;
   place-items: center;
-  border-radius: 30px;
+  border-radius: 26px;
   transform: translate(-50%, -50%);
 }
 
 .signin-core span {
   color: var(--color-mint);
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 2.65rem;
+  font-weight: 650;
   line-height: 1;
 }
 
@@ -2393,9 +2404,9 @@ h3 {
 .signin-node {
   display: grid;
   gap: 4px;
-  min-width: 168px;
-  border-radius: 20px;
-  padding: 16px;
+  min-width: 150px;
+  border-radius: 16px;
+  padding: 14px;
 }
 
 .signin-node svg {
@@ -2404,6 +2415,7 @@ h3 {
 
 .signin-node strong {
   color: #fff;
+  font-weight: 600;
 }
 
 .signin-node span {
@@ -2412,18 +2424,46 @@ h3 {
 }
 
 .node-docs {
-  top: 0;
+  top: 14px;
   left: 8%;
 }
 
 .node-fixes {
-  left: 2%;
+  left: 8%;
   bottom: 18px;
 }
 
 .node-health {
-  right: 4%;
-  bottom: 44px;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.signin-path {
+  position: absolute;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, transparent, rgba(143, 216, 199, 0.55), transparent);
+}
+
+.path-docs {
+  top: 96px;
+  left: 28%;
+  width: 34%;
+  transform: rotate(31deg);
+}
+
+.path-fixes {
+  bottom: 88px;
+  left: 26%;
+  width: 34%;
+  transform: rotate(-24deg);
+}
+
+.path-health {
+  top: 50%;
+  right: 22%;
+  width: 24%;
 }
 
 .signin-status-row {
@@ -2731,6 +2771,23 @@ h3 {
     max-width: 640px;
   }
 
+  .stats-copy {
+    width: min(100%, 760px);
+    margin: 0 auto 14px;
+    text-align: center;
+  }
+
+  .stats-copy p {
+    max-width: 680px;
+    margin: 18px auto 0;
+  }
+
+  .stats-section {
+    gap: 28px;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
   .cases-section .carousel-buttons {
     align-self: flex-end;
   }
@@ -2755,7 +2812,8 @@ h3 {
   }
 
   .signin-visual {
-    min-height: 560px;
+    min-height: 620px;
+    padding: 34px;
   }
 
   .hero-copy,
@@ -2914,6 +2972,11 @@ h3 {
     width: 100%;
   }
 
+  .pricing-heading-link {
+    justify-content: center;
+    width: 100%;
+  }
+
   .robotic-hero-image {
     inset: 190px -170px 40px -120px;
     opacity: 0.28;
@@ -2998,7 +3061,7 @@ h3 {
   }
 
   .signin-visual {
-    min-height: 520px;
+    min-height: 560px;
     padding: 24px;
   }
 
@@ -3009,6 +3072,19 @@ h3 {
   .signin-node {
     min-width: 138px;
     padding: 13px;
+  }
+
+  .signin-core {
+    width: 96px;
+    height: 96px;
+  }
+
+  .signin-core span {
+    font-size: 2.25rem;
+  }
+
+  .signin-visual-copy h2 {
+    font-size: clamp(2rem, 9vw, 2.8rem);
   }
 
   .signin-panel {
