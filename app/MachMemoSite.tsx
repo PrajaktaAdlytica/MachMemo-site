@@ -583,10 +583,10 @@ function Header({
         onMouseLeave={() => setActiveMenu(null)}
       >
         {[
-          ["Products", "Produkty"],
-          ["Solutions", "Rozwiązania"],
-          ["Resources", "Zasoby"],
-          ["Company", "Firma"],
+          ["Products", "Products"],
+          ["Solutions", "Solutions"],
+          ["Resources", "Resources"],
+          ["Company", "Company"],
         ].map(([item, label]) => (
           <button
             className={`nav-link ${activeMenu === item ? "active" : ""}`}
@@ -600,20 +600,20 @@ function Header({
           </button>
         ))}
         <Link className="nav-link direct" href="/pricing">
-          Cennik
+          Pricing
         </Link>
         {activeMenu && <MegaMenu activeMenu={activeMenu} />}
       </nav>
 
       <div className="header-actions">
         <span className="locale-pill">
-          <Globe2 size={15} /> PL / EN
+          <Globe2 size={15} /> EN
         </span>
         <Link href="/signin" className="signin">
-          Zaloguj się
+          Sign in
         </Link>
         <Link href="/request-demo" className="btn btn-primary header-demo">
-          Umów demo <ArrowRight size={16} />
+          Book a demo <ArrowRight size={16} />
         </Link>
       </div>
 
@@ -628,14 +628,14 @@ function Header({
 
       {mobileOpen && (
         <div className="mobile-menu">
-          <MobileGroup title="Produkty" items={products} />
-          <MobileGroup title="Rozwiązania" items={solutions} />
-          <Link href="/pricing">Cennik</Link>
-          <Link href="/about">Firma</Link>
+          <MobileGroup title="Products" items={products} />
+          <MobileGroup title="Solutions" items={solutions} />
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/about">Company</Link>
           <Link href="/security">AI & Data</Link>
-          <Link href="/contact">Kontakt</Link>
+          <Link href="/contact">Contact</Link>
           <Link href="/request-demo" className="btn btn-primary">
-            Umów demo
+            Book a demo
           </Link>
         </div>
       )}
