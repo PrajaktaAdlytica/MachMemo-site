@@ -422,26 +422,36 @@ h3 {
 
 .hero {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(620px, 1.14fr);
-  gap: 42px;
-  align-items: center;
-  min-height: 900px;
-  padding: 148px 56px 72px;
+  min-height: 1040px;
+  padding: 146px 32px 54px;
   background:
-    linear-gradient(rgba(16, 22, 25, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 22, 25, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, #f9faf7 0%, #eef3ef 100%);
-  background-size: 64px 64px, 64px 64px, cover;
+    radial-gradient(circle at 50% 35%, rgba(143, 216, 199, 0.18), transparent 30%),
+    linear-gradient(rgba(16, 22, 25, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 22, 25, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, #fbfcf8 0%, #edf4ef 100%);
+  background-size: auto, 64px 64px, 64px 64px, cover;
 }
 
 .hero-copy {
-  max-width: 590px;
-  justify-self: end;
+  position: relative;
+  z-index: 3;
+  max-width: 990px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-copy h1 {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: clamp(3.8rem, 7.1vw, 6.8rem);
+  line-height: 0.98;
 }
 
 .hero-subcopy {
-  max-width: 560px;
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
   color: var(--color-graphite);
   font-size: 1.12rem;
   line-height: 1.65;
@@ -450,6 +460,7 @@ h3 {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 13px;
   margin-top: 32px;
 }
@@ -457,6 +468,7 @@ h3 {
 .hero-proof {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 9px;
   margin-top: 28px;
 }
@@ -478,18 +490,25 @@ h3 {
   color: var(--color-circuit);
 }
 
+.hero-visual-stage {
+  width: min(100%, 1420px);
+  margin: 48px auto 0;
+}
+
 .graph-board {
   position: relative;
-  min-height: 690px;
+  width: 100%;
+  min-height: 650px;
   border: 1px solid rgba(186, 198, 192, 0.86);
   border-radius: var(--radius-md);
   background:
-    radial-gradient(circle at center, rgba(31, 138, 112, 0.07), transparent 28%),
+    radial-gradient(circle at 50% 47%, rgba(31, 138, 112, 0.1), transparent 28%),
+    radial-gradient(circle at 15% 35%, rgba(143, 216, 199, 0.16), transparent 34%),
     linear-gradient(rgba(16, 22, 25, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(16, 22, 25, 0.04) 1px, transparent 1px),
-    rgba(255, 255, 255, 0.8);
-  background-size: auto, 28px 28px, 28px 28px, cover;
-  box-shadow: var(--shadow-soft);
+    rgba(255, 255, 255, 0.9);
+  background-size: auto, auto, 28px 28px, 28px 28px, cover;
+  box-shadow: 0 28px 70px rgba(16, 22, 25, 0.12);
   overflow: hidden;
 }
 
@@ -511,55 +530,55 @@ h3 {
 }
 
 .link-docs {
-  top: 202px;
-  left: 210px;
-  width: 190px;
-  transform: rotate(32deg);
+  top: 212px;
+  left: 36%;
+  width: 180px;
+  transform: rotate(38deg);
 }
 
 .link-faults {
   top: 194px;
-  left: 390px;
-  width: 170px;
+  left: 49%;
+  width: 150px;
   transform: rotate(-26deg);
 }
 
 .link-signals {
-  top: 224px;
-  left: 500px;
-  width: 190px;
-  transform: rotate(26deg);
+  top: 228px;
+  left: 58%;
+  width: 240px;
+  transform: rotate(28deg);
 }
 
 .link-fixes {
-  top: 346px;
-  left: 212px;
-  width: 210px;
-  transform: rotate(-24deg);
+  top: 370px;
+  left: 31%;
+  width: 230px;
+  transform: rotate(-28deg);
 }
 
 .link-machines {
   top: 430px;
-  left: 338px;
+  left: 44%;
   width: 160px;
   transform: rotate(90deg);
 }
 
 .link-experts {
-  top: 340px;
-  left: 494px;
-  width: 140px;
-  transform: rotate(-10deg);
+  top: 348px;
+  left: 55%;
+  width: 160px;
+  transform: rotate(-14deg);
 }
 
 .graph-core {
   position: absolute;
   top: 286px;
-  left: 410px;
+  left: 50%;
   z-index: 2;
   display: grid;
-  width: 116px;
-  height: 116px;
+  width: 124px;
+  height: 124px;
   place-items: center;
   border: 1px solid rgba(31, 138, 112, 0.36);
   border-radius: 26px;
@@ -567,6 +586,23 @@ h3 {
   box-shadow:
     0 18px 45px rgba(31, 138, 112, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+  transform: translateX(-50%);
+}
+
+.graph-core::before,
+.graph-core::after {
+  content: "";
+  position: absolute;
+  inset: -64px;
+  border: 1px solid rgba(31, 138, 112, 0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.graph-core::after {
+  inset: -118px;
+  border-style: dashed;
+  opacity: 0.55;
 }
 
 .graph-core-pulse {
@@ -598,11 +634,11 @@ h3 {
   display: grid;
   grid-template-columns: 36px 1fr;
   gap: 10px;
-  min-width: 185px;
+  width: 210px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.86);
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 14px 30px rgba(16, 22, 25, 0.08);
   backdrop-filter: blur(14px);
 }
@@ -632,43 +668,43 @@ h3 {
 }
 
 .node-docs {
-  top: 74px;
-  left: 168px;
+  top: 78px;
+  left: 35%;
 }
 
 .node-faults {
-  top: 72px;
-  left: 414px;
+  top: 74px;
+  left: 50%;
 }
 
 .node-signals {
-  top: 102px;
-  right: 58px;
+  top: 106px;
+  left: 65%;
 }
 
 .node-fixes {
-  top: 320px;
-  left: 66px;
+  top: 336px;
+  left: 27%;
 }
 
 .node-machines {
-  bottom: 74px;
-  left: 310px;
+  bottom: 56px;
+  left: 40%;
 }
 
 .node-experts {
-  top: 342px;
-  left: 566px;
+  top: 330px;
+  left: 59%;
 }
 
 .verified-answer {
   position: absolute;
-  right: 34px;
-  bottom: 54px;
-  width: 318px;
+  right: 38px;
+  bottom: 44px;
+  width: 360px;
   border: 1px solid rgba(201, 121, 18, 0.52);
   border-radius: var(--radius-md);
-  padding: 18px;
+  padding: 20px;
   background: #fffaf0;
   box-shadow: 0 18px 45px rgba(201, 121, 18, 0.14);
 }
@@ -769,8 +805,8 @@ h3 {
 .workflow-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: min(100% - 64px, var(--container));
-  margin: 44px auto 0;
+  width: min(100% - 64px, 1320px);
+  margin: -18px auto 0;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.76);
@@ -780,8 +816,9 @@ h3 {
 .workflow-pill {
   position: relative;
   display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 16px;
+  grid-template-columns: 36px 32px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
   padding: 28px;
 }
 
@@ -796,6 +833,15 @@ h3 {
 .workflow-pill p {
   margin-bottom: 0;
   color: var(--color-steel);
+  max-width: 360px;
+}
+
+.workflow-pill div {
+  grid-column: 3;
+}
+
+.workflow-pill h3 {
+  margin-bottom: 8px;
 }
 
 .step-index {
@@ -981,7 +1027,7 @@ h3 {
 
 .story-card {
   display: grid;
-  grid-template-columns: 34px 28px 1fr;
+  grid-template-columns: 38px 30px minmax(0, 1fr);
   gap: 14px;
   align-items: start;
   padding: 22px;
@@ -998,10 +1044,12 @@ h3 {
 }
 
 .story-card h3 {
+  grid-column: 3;
   margin-bottom: 7px;
 }
 
 .story-card p {
+  grid-column: 3;
   margin-bottom: 0;
 }
 

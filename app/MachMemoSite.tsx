@@ -739,8 +739,8 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <TrustStrip />
       <WorkflowStrip />
+      <TrustStrip />
       <ProductArchitecture />
       <ScrollStory />
       <MemoryLayer />
@@ -790,7 +790,9 @@ function Hero() {
         </div>
       </div>
 
-      <MemoryGraphHero />
+      <div className="hero-visual-stage">
+        <MemoryGraphHero />
+      </div>
     </section>
   );
 }
