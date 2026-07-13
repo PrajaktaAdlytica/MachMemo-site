@@ -464,6 +464,58 @@ h3 {
   overflow: hidden;
 }
 
+.hero-reference-mode {
+  display: flex;
+  min-height: auto;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  background: #03090d;
+}
+
+.hero-reference-mode::before {
+  display: none;
+}
+
+.hero-reference-image {
+  display: block;
+  width: min(100%, 2261px);
+  height: auto;
+  user-select: none;
+}
+
+.hero-hotspots {
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: min(100%, 2261px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-hotspot {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  color: transparent;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.hero-hotspot-demo {
+  top: 36.8%;
+  left: 5.3%;
+  width: 11%;
+  height: 4.4%;
+}
+
+.hero-hotspot-watch {
+  top: 36.8%;
+  left: 17.7%;
+  width: 14%;
+  height: 4.4%;
+}
+
 .hero::before {
   content: "";
   position: absolute;

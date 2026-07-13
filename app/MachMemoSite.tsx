@@ -3,13 +3,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Activity,
   AlertTriangle,
   ArrowRight,
   BarChart3,
-  BookOpen,
   Brain,
   BriefcaseBusiness,
   Building2,
@@ -17,7 +17,6 @@ import {
   ChevronDown,
   ClipboardCheck,
   Cpu,
-  Database,
   Factory,
   FileText,
   Gauge,
@@ -30,12 +29,8 @@ import {
   MessageSquareQuote,
   Phone,
   PlugZap,
-  Play,
-  Radio,
   Search,
   ShieldCheck,
-  Sparkles,
-  UserRound,
   Users,
   Wrench,
   X,
@@ -185,33 +180,6 @@ const companyLinks: MenuItem[] = [
     href: "/contact",
     description: "Warsaw office, demo requests, partnerships, and support.",
     icon: Mail,
-  },
-];
-
-const industryTags = [
-  "CNC machining",
-  "Packaging",
-  "Automotive suppliers",
-  "Food production",
-  "Industrial service",
-  "Metal fabrication",
-];
-
-const workflowSteps = [
-  {
-    title: "Capture",
-    copy: "Zbieramy wszystko, co ważne: dokumenty, zgłoszenia, sygnały, notatki i rozmowy.",
-    icon: Database,
-  },
-  {
-    title: "Verify",
-    copy: "Weryfikujemy i łączymy w grafie. Każda odpowiedź ma źródła i poziom pewności.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Apply",
-    copy: "Dostarczamy właściwe rozwiązania we właściwym momencie. Mniej przestojów.",
-    icon: ClipboardCheck,
   },
 ];
 
@@ -572,13 +540,15 @@ export default function MachMemoSite({ page = "home" }: { page?: PageKey }) {
   }, [page]);
 
   return (
-    <div className="site-shell">
-      <Header
-        activeMenu={activeMenu}
-        setActiveMenu={setActiveMenu}
-        mobileOpen={mobileOpen}
-        setMobileOpen={setMobileOpen}
-      />
+    <div className={`site-shell ${page === "home" ? "home-shell" : ""}`}>
+      {page !== "home" && (
+        <Header
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+        />
+      )}
       <main>{body}</main>
       <Footer />
     </div>
@@ -737,8 +707,6 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <WorkflowStrip />
-      <TrustStrip />
       <ProductArchitecture />
       <ScrollStory />
       <MemoryLayer />
@@ -755,196 +723,23 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section className="hero">
-      <div className="hero-copy reveal">
-        <div className="eyebrow badge-line">
-          <Sparkles size={15} />
-          Zweryfikowana AI dla utrzymania ruchu
-        </div>
-        <h1>
-          Zamień awarie maszyn w <span>pamięć, która działa.</span>
-        </h1>
-        <p className="hero-subcopy">
-          MachMemo łączy dokumenty, naprawy, sygnały i wiedzę ekspertów
-          w jedną zweryfikowaną warstwę pamięci maszyn. Odpowiada z
-          kontekstem. Działa w Twojej rzeczywistości.
-        </p>
-        <div className="hero-actions">
-          <Link className="btn btn-primary" href="/request-demo">
-            Umów demo <ArrowRight size={18} />
-          </Link>
-          <Link className="btn btn-secondary" href="/products/fix">
-            <Play size={16} />
-            Zobacz jak to działa
-          </Link>
-        </div>
-        <div className="hero-proof">
-          {["AI Act Ready", "Dane zostają w Twojej organizacji", "Hosting w UE"].map((item) => (
-            <span key={item}>
-              <Check size={14} />
-              {item}
-            </span>
-          ))}
-        </div>
+    <section className="hero hero-reference-mode" aria-label="MachMemo hero">
+      <Image
+        src="/machmemo-dark-hero-reference.png"
+        alt="MachMemo dark hero showing machine memory graph, verified maintenance answer, workflow cards, and Polish/EU manufacturing proof."
+        className="hero-reference-image"
+        width={2261}
+        height={1508}
+        priority
+      />
+      <div className="hero-hotspots" aria-label="Hero actions">
+        <Link className="hero-hotspot hero-hotspot-demo" href="/request-demo">
+          Umów demo
+        </Link>
+        <Link className="hero-hotspot hero-hotspot-watch" href="/products/fix">
+          Zobacz jak to działa
+        </Link>
       </div>
-
-      <div className="hero-visual-stage">
-        <MemoryGraphHero />
-      </div>
-    </section>
-  );
-}
-
-function MemoryGraphHero() {
-  return (
-    <div className="graph-board reveal" aria-label="MachMemo machine memory graph">
-      <div className="scan-line" />
-      <span className="memory-link link-docs" />
-      <span className="memory-link link-faults" />
-      <span className="memory-link link-signals" />
-      <span className="memory-link link-fixes" />
-      <span className="memory-link link-machines" />
-      <span className="memory-link link-experts" />
-
-      <div className="graph-core">
-        <span className="graph-core-pulse" />
-        <span className="core-mark">M</span>
-        <small>Memory graph</small>
-      </div>
-
-      <GraphNode
-        className="node-docs"
-        icon={FileText}
-        title="Dokumenty"
-        value="1,248 plików"
-        detail="SOP, instrukcje, rysunki"
-      />
-      <GraphNode
-        className="node-faults"
-        icon={AlertTriangle}
-        title="Awarie"
-        value="842 przypadki"
-        detail="Historia zdarzeń"
-      />
-      <GraphNode
-        className="node-signals"
-        icon={Radio}
-        title="Sygnały"
-        value="2.4M punktów/dzień"
-        detail="SCADA, IoT, trendy"
-      />
-      <GraphNode
-        className="node-fixes"
-        icon={Wrench}
-        title="Naprawy"
-        value="1,103 rozwiązania"
-        detail="Kroki, części, czasy"
-      />
-      <GraphNode
-        className="node-machines"
-        icon={Factory}
-        title="Maszyny"
-        value="156 aktywne"
-        detail="Linie, urządzenia, komponenty"
-      />
-      <GraphNode
-        className="node-experts"
-        icon={UserRound}
-        title="Eksperci"
-        value="28 specjalistów"
-        detail="Wiedza ekspercka"
-      />
-
-      <article className="verified-answer">
-        <div className="answer-top">
-          <span>Aktywne: Pompa P-101</span>
-          <strong>Umiarkowane</strong>
-        </div>
-        <div className="verified-line">
-          <Check size={14} />
-          Zweryfikowana odpowiedź
-        </div>
-        <h3>Wykryto nietypowe wibracje</h3>
-        <p>
-          Najbardziej prawdopodobna przyczyna: luźne mocowanie stopy pompy
-          lub luz łożyska po ostatnim oknie serwisowym.
-        </p>
-        <div className="confidence-track">
-          <span />
-          <span />
-          <span />
-        </div>
-        <ul className="source-list">
-          <li>
-            <FileText size={14} /> WO-2024-0312 <strong>98%</strong>
-          </li>
-          <li>
-            <BookOpen size={14} /> SOP-PMP-07 <strong>96%</strong>
-          </li>
-          <li>
-            <Activity size={14} /> SCADA Trend <strong>94%</strong>
-          </li>
-          <li>
-            <UserRound size={14} /> Ekspert: Jan Kowalski <strong>93%</strong>
-          </li>
-        </ul>
-      </article>
-    </div>
-  );
-}
-
-function GraphNode({
-  className,
-  icon: Icon,
-  title,
-  value,
-  detail,
-}: {
-  className: string;
-  icon: IconType;
-  title: string;
-  value: string;
-  detail: string;
-}) {
-  return (
-    <article className={`memory-node ${className}`}>
-      <Icon size={21} />
-      <div>
-        <strong>{title}</strong>
-        <span>{value}</span>
-        <small>{detail}</small>
-      </div>
-    </article>
-  );
-}
-
-function TrustStrip() {
-  return (
-    <section className="trust-strip">
-      <span>Built for Polish and European manufacturers</span>
-      {industryTags.map((item) => (
-        <strong key={item}>{item}</strong>
-      ))}
-    </section>
-  );
-}
-
-function WorkflowStrip() {
-  return (
-    <section className="workflow-strip">
-      {workflowSteps.map((step, index) => {
-        const Icon = step.icon;
-        return (
-          <article className="workflow-pill reveal" key={step.title}>
-            <span className="step-index">{index + 1}</span>
-            <Icon size={23} />
-            <div>
-              <h3>{step.title}</h3>
-              <p>{step.copy}</p>
-            </div>
-          </article>
-        );
-      })}
     </section>
   );
 }
