@@ -2338,14 +2338,20 @@ h3 {
 }
 
 .signin-visual-copy {
-  max-width: 460px;
+  display: grid;
+  max-width: 500px;
+  gap: 18px;
+  margin-top: 42px;
 }
 
 .signin-visual-copy .eyebrow {
+  width: max-content;
+  margin-bottom: 0;
   color: var(--color-mint);
 }
 
 .signin-visual-copy h2 {
+  margin: 0;
   color: #fff;
   font-size: clamp(2.1rem, 3.3vw, 3.25rem);
   font-weight: 500;
@@ -2353,6 +2359,8 @@ h3 {
 }
 
 .signin-visual-copy p {
+  max-width: 470px;
+  margin: 0;
   color: rgba(236, 246, 242, 0.72);
   font-size: 1.02rem;
   line-height: 1.58;
@@ -2816,6 +2824,12 @@ h3 {
     padding: 34px;
   }
 
+  .signin-visual-copy {
+    max-width: 560px;
+    gap: 16px;
+    margin-top: 34px;
+  }
+
   .hero-copy,
   .inner-copy,
   .feature-copy,
@@ -3085,6 +3099,11 @@ h3 {
 
   .signin-visual-copy h2 {
     font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .signin-visual-copy {
+    gap: 14px;
+    margin-top: 28px;
   }
 
   .signin-panel {
